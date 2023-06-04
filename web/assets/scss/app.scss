@@ -1,13 +1,36 @@
-// fonts
-@import "./custom/fonts/fonts";
+/*
+Template Name: Skote - Responsive Bootstrap 4 Admin Dashboard
+Author: Themesbrand
+Version: 1.0.0
+Website: https://themesbrand.com/
+Contact: themesbrand@gmail.com
+File: Main Css File
+*/
 
-// icons
-@import "./icons.scss";
+//Fonts
+@import "custom/fonts/fonts";
 
-// plugins
-@import "bootstrap/scss/bootstrap";
+//Core files
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "variables";
+@import "bootstrap/scss/mixins";
 
-// structure 
-@import "./custom/structure/horizontal-nav";
-@import "./custom/structure/topbar";
-@import "./custom/structure/layouts";
+// Structure
+@import "custom/structure/general";
+@import "custom/structure/topbar";
+@import "custom/structure/page-head";
+@import "custom/structure/footer";
+@import "custom/structure/right-sidebar";
+@import "custom/structure/vertical";
+@import "custom/structure/horizontal-nav";
+@import "custom/structure/layouts";
+
+// Components
+@import "custom/components//waves";
+@import "custom/components/avatar";
+@import "custom/components/helper";
+@import "custom/components/preloader";
+@import "custom/components/widgets";
+@import "custom/components/demos";
+@import "custom/components/print";

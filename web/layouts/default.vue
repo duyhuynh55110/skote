@@ -1,10 +1,10 @@
 <template>
     <div id="layout-wrapper">
-        <Header /> 
+        <PartialTopBar /> 
 
         <!-- Page content -->
         <slot />
         
-        <footer> Footer </footer>
+        <PartialFooter /> 
     </div>
 </template>

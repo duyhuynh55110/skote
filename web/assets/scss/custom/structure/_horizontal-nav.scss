@@ -58,6 +58,7 @@
 }
 
 @include media-breakpoint-up(xl) {
+
     body[data-layout="horizontal"] {
         .container-fluid,
         .navbar-header {

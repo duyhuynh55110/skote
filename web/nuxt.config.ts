@@ -8,19 +8,10 @@ export default defineNuxtConfig({
       }
     }
   },
-  
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `
-            @import "~/assets/scss/plugins/bootstrap.scss";
-            @import "~/assets/scss/variables.scss";
-          `,
-        },
-      },
-    },
-  },
 
-  css: ['~/assets/scss/app.scss'],
+  css: [
+    '~/assets/scss/bootstrap.scss',
+    '~/assets/scss/icons.scss',
+    '~/assets/scss/app.scss'
+  ],
 });
