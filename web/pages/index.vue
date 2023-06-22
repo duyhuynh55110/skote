@@ -1,504 +1,160 @@
 <template>
-    <div class="main-content">
-        <div class="page-content">
-            <div class="container-fluid">
-
-                <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Cards</h4>
-
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">UI Elements</a></li>
-                                    <li class="breadcrumb-item active">Cards</li>
-                                </ol>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>     
-                <!-- end page title -->
-
-                <div class="row">
-                    <div class="col-md-6 col-xl-3">
-
-                        <!-- Simple card -->
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="@/assets/images/small/img-1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make
-                                    up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary waves-effect waves-light">Button</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="@/assets/images/small/img-2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make
-                                    up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="@/assets/images/small/img-3.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make
-                                    up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-
-
-                    <div class="col-md-6 col-xl-3">
-
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Card title</h4>
-                                <h6 class="card-subtitle font-14 text-muted">Support card subtitle</h6>
-                            </div>
-                            <img class="img-fluid" src="@/assets/images/small/img-4.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make
-                                    up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card card-body">
-                            <h3 class="card-title mt-0">Special title treatment</h3>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card card-body">
-                            <h3 class="card-title mt-0">Special title treatment</h3>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
-                        </div>
+    <div>
+        <div class="row pb-3">
+            <div class="col-2">
+                <div class="categories-dropdown-wrap card">
+                    <div class="categories-dropdown-inner card-body py-3">
+                        <ul>
+                            <li v-for="i in 12" :key="i">
+                                <a href="https://nest.botble.com/product-categories/milks-and-dairies" class="text-muted d-flex align-items-center mb-3">
+                                    <img :src="`https://nest.botble.com/storage/product-categories/icon-${i}.png`" class="img-fluid me-2" width="20"> Milks and Dairies 
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- end row -->
+            </div>
+            <div class="col-8">
+                <div ref="introCarousel" style="border-radius: 30px" class="overflow-hidden carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <!-- [End] Indicators -->
 
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card card-body">
-                            <h4 class="card-title mt-0">Special title treatment</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://nest.botble.com/storage/sliders/5-1.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://nest.botble.com/storage/sliders/5-2.png" class="d-block w-100">
                         </div>
                     </div>
-
-                    <div class="col-lg-4 ">
-                        <div class="card card-body text-center">
-                            <h4 class="card-title mt-0">Special title treatment</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card card-body text-right">
-                            <h4 class="card-title mt-0">Special title treatment</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
-                        </div>
-                    </div>
+                    <!-- [End] Slide -->
                 </div>
-                <!-- end row -->
-
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <h4 class="card-header mt-0">Featured</h4>
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Special title treatment</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to
-                                    additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                Quote
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="card-blockquote mb-0">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                        erat a ante.</p>
-                                    <footer class="blockquote-footer font-size-12">
-                                        Someone famous in <cite title="Source Title">Source Title</cite>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Special title treatment</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to
-                                    additional content.</p>
-                                <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="@/assets/images/small/img-5.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Card title</h4>
-                                <p class="card-text">This is a wider card with supporting text below as a
-                                    natural lead-in to additional content. This content is a little bit
-                                    longer.</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Last updated 3 mins ago</small>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mt-0">Card title</h4>
-                                <p class="card-text">This is a wider card with supporting text below as a
-                                    natural lead-in to additional content. This content is a little bit
-                                    longer.</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Last updated 3 mins ago</small>
-                                </p>
-                            </div>
-                            <img class="card-img-bottom img-fluid" src="@/assets/images/small/img-7.jpg" alt="Card image cap">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img class="card-img img-fluid" src="@/assets/images/small/img-6.jpg" alt="Card image">
-                            <div class="card-img-overlay">
-                                <h4 class="card-title text-white mt-0">Card title</h4>
-                                <p class="card-text text-light">This is a wider card with supporting text below as a
-                                    natural lead-in to additional content. This content is a little bit
-                                    longer.</p>
-                                <p class="card-text">
-                                    <small class="text-white">Last updated 3 mins ago</small>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-4">
-                                    <img class="card-img img-fluid" src="@/assets/images/small/img-2.jpg" alt="Card image">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <img class="card-img img-fluid" src="@/assets/images/small/img-3.jpg" alt="Card image">
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-                
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card bg-primary text-white-50">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-bullseye-arrow mr-3"></i> Primary Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card bg-success text-white-50">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-check-all mr-3"></i> Success Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card bg-info text-white-50">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-alert-circle-outline mr-3"></i>Info Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card bg-warning text-white-50">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-alert-outline mr-3"></i>Warning Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card bg-danger text-white-50">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-block-helper mr-3"></i>Danger Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card bg-dark text-light">
-                            <div class="card-body">
-                                <h5 class="mt-0 mb-4 text-light"><i class="mdi mdi-alert-circle-outline mr-3"></i>Dark Card</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card border border-primary">
-                            <div class="card-header bg-transparent border-primary">
-                                <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow mr-3"></i>Primary outline Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card border border-danger">
-                            <div class="card-header bg-transparent border-danger">
-                                <h5 class="my-0 text-danger"><i class="mdi mdi-block-helper mr-3"></i>Danger outline Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card border border-success">
-                            <div class="card-header bg-transparent border-success">
-                                <h5 class="my-0 text-success"><i class="mdi mdi-check-all mr-3"></i>Success Card</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title mt-0">card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-                
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="my-3">Decks</h4>
-                        <div class="card-deck-wrapper">
-                            <div class="card-deck">
-                                <div class="card mb-4">
-                                    <img class="card-img-top img-fluid" src="@/assets/images/small/img-4.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title mt-0">Card title</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as
-                                            a natural lead-in to additional content. This content is a little
-                                            bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card mb-4">
-                                    <img class="card-img-top img-fluid" src="@/assets/images/small/img-5.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title mt-0">Card title</h4>
-                                        <p class="card-text">This card has supporting text below as a natural
-                                            lead-in to additional content.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card mb-4">
-                                    <img class="card-img-top img-fluid" src="@/assets/images/small/img-6.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title mt-0">Card title</h4>
-                                        <p class="card-text">This is a wider card with supporting text below as
-                                            a natural lead-in to additional content. This card has even longer
-                                            content than the first to show that equal height action.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4 class="my-3">Cards Columns</h4>
-                        <div class="card-columns">
-                            <div class="card">
-                                <img src="@/assets/images/small/img-3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title that wraps to a new line</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <blockquote class="card-blockquote mb-0">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                        <footer class="blockquote-footer font-size-12">
-                                            Someone famous in <cite title="Source Title">Source Title</cite>
-                                        </footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="@/assets/images/small/img-5.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card bg-primary text-white text-center p-3">
-                                <blockquote class="card-blockquote mb-0">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                                    <footer class="blockquote-footer text-white font-size-12">
-                                        Someone famous in <cite title="Source Title">Source Title</cite>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                            <div class="card text-center">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="@/assets/images/small/img-7.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card p-3 text-right">
-                                <blockquote class="blockquote mb-0">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                <footer class="blockquote-footer">
-                                    <small class="text-muted">
-                                    Someone famous in <cite title="Source Title">Source Title</cite>
-                                    </small>
-                                </footer>
-                                </blockquote>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-
-            </div> <!-- container-fluid -->
+                <!-- [End] Intro Carousel -->
+            </div>
         </div>
-        <!-- End Page-content -->
+
+        <!-- <UiPageTitle title="TOP_CATEGORIES" />
+        <div class="row">
+            <div class="col-12">
+                <div ref="categoriesCarousel" class="text-thu">
+                    <div v-for="i in 12" :key="i" style="background-color: red">
+                        <div class="card-body">
+                            <img src="https://nest.botble.com/storage/product-categories/image-1-400x400.png" class="img-fluid" style="max-width: 80px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- [END] Top Categories -->
+
+        <UiPageTitle title="POPULAR_PRODUCTS" />
+        <div class="row">
+            <div v-for="i in 12" :key="i" class="col-xl-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="product-img position-relative">
+                            <div class="avatar-sm product-ribbon">
+                                <span class="avatar-title rounded-circle  bg-primary">
+                                    - 25 %
+                                </span>
+                            </div>
+                            <img :src="`https://nest.botble.com/storage/products/${i}-400x400.jpg`" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="mt-4 text-center">
+                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Half sleeve T-shirt </a></h5>
+                            
+                            <p class="text-muted">
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                            </p>
+                            <h5 class="my-0"><span class="text-muted mr-2"><del>$500</del></span> <b>$450</b></h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [END] Popular products -->
+
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <UiPageTitle title="TOP_SELLING" />
+                <div class="row">
+                    <div v-for="i in 3" :key="i" class="col-lg-12">
+                        <div class="card">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-4">
+                                    <img class="card-img img-fluid" :src="`https://nest.botble.com/storage/product-categories/image-${i}-400x400.png`" alt="Card image">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <UiPageTitle title="TRENDING_PRODUCTS" />
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <UiPageTitle title="RECENTLY_ADDED" />
+            </div>
+        </div>
     </div>
 </template>
 
-<script lang="ts" setup>
+<style src="./home.scss" lang="scss" scoped></style>
 
+<script lang="ts" setup>
+    import { ref, onMounted, defineComponent } from 'vue'
+    import { Carousel } from 'bootstrap'
+
+    // optional style for arrows & dots
+    import 'flickity/css/flickity.css'
+
+    const { $bootstrap } = useNuxtApp();
+
+    // declare a ref to hold the element reference
+    // the name must match template ref value
+    const introCarousel = ref();
+    const categoriesCarousel = ref();
+
+    // mounted hook
+    onMounted(() => {
+        initIntroCarousel()
+        // initTopCategoriesCarousel()
+    })
+
+    //initial bootstrap carousel
+    const initIntroCarousel = async () => {
+        const Flickity = await import('flickity');
+
+        return new Flickity.default(introCarousel.value, {
+            interval: 2000,
+            wrap: true,
+            touch: true,
+        })
+    }
+
+    const initTopCategoriesCarousel = async () => {
+        // https://flickity.metafizzy.co/
+        const Flickity = await import('flickity');
+
+        return new Flickity.default(categoriesCarousel.value, {
+            cellAlign: 'left',
+            contain: true,
+            pageDots: false,
+        });
+    }
 </script>
