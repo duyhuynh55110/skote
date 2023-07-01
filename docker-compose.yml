@@ -6,11 +6,11 @@ services:
         build:
             context: .
             dockerfile: './docker/db/Dockerfile'
-        container_name: 'sodia_db'
+        container_name: 'skote_db'
         volumes:
-            - 'sodia-mysql:/var/lib/mysql'
+            - 'skote-mysql:/var/lib/mysql'
         networks:
-            - sodia
+            - skote
         environment:
             TZ: '${APP_TIMEZONE:-UTC}'
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
@@ -21,11 +21,11 @@ services:
         healthcheck:
             test: ['CMD', 'mysqladmin', 'ping', '-p${DB_PASSWORD}']
 networks:
-    sodia:
+    skote:
         driver: bridge
 volumes:
-    sodia-mysql: # Use mysql local (must install mysql local to use)
+    skote-mysql: # Use mysql local (must install mysql local to use)
         driver: local
-    sodia-redis:
+    skote-redis:
         driver: local
     dependencies:
