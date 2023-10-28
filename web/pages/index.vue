@@ -11,44 +11,22 @@
                                 </a>
                             </li>
                         </ul>
+                        <!-- Categories list -->
                     </div>
                 </div>
             </div>
-            <div class="col-8">
-                <div ref="introCarousel" style="border-radius: 30px" class="overflow-hidden carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <div class="col-10">
+                <Flicking id="introduceCarousel" ref="introduceCarousel" :options="{ align: 'prev' }">
+                    <div class="panel rounded">
+                        <img src="https://nest.botble.com/storage/sliders/2-1.png" class="img-responsive">
                     </div>
-                    <!-- [End] Indicators -->
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://nest.botble.com/storage/sliders/5-1.png" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://nest.botble.com/storage/sliders/5-2.png" class="d-block w-100">
-                        </div>
+                    <div class="panel rounded">
+                        <img src="https://nest.botble.com/storage/sliders/2-2.png" class="img-responsive">
                     </div>
-                    <!-- [End] Slide -->
-                </div>
-                <!-- [End] Intro Carousel -->
+                </Flicking>
+                <!-- Introduce Slides -->
             </div>
         </div>
-
-        <!-- <UiPageTitle title="TOP_CATEGORIES" />
-        <div class="row">
-            <div class="col-12">
-                <div ref="categoriesCarousel" class="text-thu">
-                    <div v-for="i in 12" :key="i" style="background-color: red">
-                        <div class="card-body">
-                            <img src="https://nest.botble.com/storage/product-categories/image-1-400x400.png" class="img-fluid" style="max-width: 80px">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- [END] Top Categories -->
 
         <UiPageTitle title="POPULAR_PRODUCTS" />
         <div class="row">
@@ -80,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <!-- [END] Popular products -->
+        <!-- Popular products -->
 
         <div class="row">
             <div class="col-md-6 col-lg-4">
@@ -117,44 +95,8 @@
 <style src="./home.scss" lang="scss" scoped></style>
 
 <script lang="ts" setup>
-    import { ref, onMounted, defineComponent } from 'vue'
-    import { Carousel } from 'bootstrap'
-
-    // optional style for arrows & dots
-    import 'flickity/css/flickity.css'
+    import { ref } from 'vue'
+    import Flicking from "@egjs/vue3-flicking";
 
     const { $bootstrap } = useNuxtApp();
-
-    // declare a ref to hold the element reference
-    // the name must match template ref value
-    const introCarousel = ref();
-    const categoriesCarousel = ref();
-
-    // mounted hook
-    onMounted(() => {
-        initIntroCarousel()
-        // initTopCategoriesCarousel()
-    })
-
-    //initial bootstrap carousel
-    const initIntroCarousel = async () => {
-        const Flickity = await import('flickity');
-
-        return new Flickity.default(introCarousel.value, {
-            interval: 2000,
-            wrap: true,
-            touch: true,
-        })
-    }
-
-    const initTopCategoriesCarousel = async () => {
-        // https://flickity.metafizzy.co/
-        const Flickity = await import('flickity');
-
-        return new Flickity.default(categoriesCarousel.value, {
-            cellAlign: 'left',
-            contain: true,
-            pageDots: false,
-        });
-    }
 </script>
