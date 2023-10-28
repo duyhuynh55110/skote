@@ -92,7 +92,7 @@
     </div>
 </template>
 
-<style src="./home.scss" lang="scss" scoped></style>
+<style src="./Home.scss" lang="scss" scoped></style>
 
 <script lang="ts" setup>
     import { ref } from 'vue'
