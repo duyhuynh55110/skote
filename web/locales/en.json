@@ -1,3 +1,10 @@
 {
-    "TOP_CATEGORIES": "Top Categories"
+    "TOP_CATEGORIES": "Top Categories",
+    "USERNAME": "username",
+    "PASSWORD": "password",
+    "ENTER_USERNAME": "Enter username",
+    "ENTER_PASSWORD": "Enter password",
+    "REMEMBER_ME": "Remember me",
+    "LOG_IN": "Log In",
+    "FORGOT_YOUR_PASSWORD": "Forgot your password?"
 }
