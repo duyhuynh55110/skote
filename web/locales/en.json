@@ -6,5 +6,18 @@
     "ENTER_PASSWORD": "Enter password",
     "REMEMBER_ME": "Remember me",
     "LOG_IN": "Log In",
-    "FORGOT_YOUR_PASSWORD": "Forgot your password?"
+    "FORGOT_YOUR_PASSWORD": "Forgot your password?",
+    "PHONE_NUMBER": "phone number",
+    "ENTER_PHONE_NUMBER": "Enter phone number",
+    "COUNTRY_CODE": "country code",
+    "SIGN_UP": "sign up",
+    "OR_SIGN_UP_WITH": "or sign up with",
+    "SENDING_OTP_CODE": "Sending OTP code",
+    "OTP_CODE": "OTP Code",
+    "GET_OTP_CODE": "Get OTP code",
+    "MESSAGES": {
+        "INVALID_CODE": "Code was invalid. Please try another code",
+        "TOO_MANY_TIME": "You have tried to send the OTP code many times. Please try again later",
+        "SOMETHING_WAS_WRONG": "Something was wrong. Please try again"
+    } 
 }

@@ -37,10 +37,12 @@ File: Main Css File
 @import "custom/components/widgets";
 @import "custom/components/demos";
 @import "custom/components/print";
-@import "custom/components/custom-form";
 
 // Pages
 @import "custom/pages/contacts";
 
 // https://www.npmjs.com/package/@egjs/vue3-flicking
 @import "@egjs/vue3-flicking/dist/flicking";
+
+// My custom styles
+@import "my-custom";
