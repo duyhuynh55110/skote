@@ -2,7 +2,7 @@
 // _buttons.scss
 // 
 
-button,a {
+button, a {
   outline: none !important;
 }
 
@@ -12,6 +12,6 @@ button,a {
   border-radius: 30px;
 }
 
-.btn-dark, .btn-secondary{
+.btn-dark, .btn-secondary, .btn-primary {
   color: $gray-200 !important;
 }

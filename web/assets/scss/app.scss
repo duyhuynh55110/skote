@@ -13,7 +13,7 @@ File: Main Css File
 //Fonts
 @import "custom/fonts/fonts";
 
-//Core files
+// Core files
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "variables";
@@ -38,5 +38,11 @@ File: Main Css File
 @import "custom/components/demos";
 @import "custom/components/print";
 
+// Pages
+@import "custom/pages/contacts";
+
 // https://www.npmjs.com/package/@egjs/vue3-flicking
 @import "@egjs/vue3-flicking/dist/flicking";
+
+// My custom styles
+@import "my-custom";
