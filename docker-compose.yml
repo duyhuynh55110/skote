@@ -1,27 +1,70 @@
 version: '3'
 
 services:
-    # NestJS application
+    # Nginx service
+    nginx:
+        build:
+            context: .
+            dockerfile: './docker/nginx/Dockerfile'
+        container_name: 'skote_nginx'
+        volumes:
+            - './app/public:/var/www/app/public'
+            - ./app/storage/app:/var/www/app/storage/app # need setting this to use laravel storage with nginx
+            - ./docker/nginx/${APP_ENV:-local}.conf:/etc/nginx/nginx.conf
+        networks:
+            - skote
+        ports:
+            - '9000:80'
+        expose:
+            - '80'
+        links:
+            - 'app'
+        depends_on:
+            - 'app'
+
+    # (VueJS) End User application
+    web:
+        build:
+            context: .
+            dockerfile: './docker/web/Dockerfile'
+        container_name: 'skote_web'
+        environment:
+            TZ: '${APP_TIMEZONE:-UTC}'
+        volumes:
+            - './web:/var/www/web'
+            - './docker/web/entrypoint.sh:/entrypoint.sh'
+            # - 'dependencies:/var/www/web/node_modules' # this enables a much faster start/reload
+        working_dir: '/var/www/web'
+        networks:
+            - skote
+        ports:
+            - '8080:8080' # when run 'npm run serve'
+        expose:
+            - '8080'
+        command: ['/entrypoint.sh']
+
+    # (Laravel) API application
     app:
         build:
             context: .
             dockerfile: './docker/app/Dockerfile'
         container_name: 'skote_app'
+        environment:
+            TZ: '${APP_TIMEZONE:-UTC}'
         volumes:
             - './app:/var/www/app'
+            - './docker/app/config/php/php.ini:/usr/local/etc/php/php.ini'
             - './docker/app/entrypoint.sh:/entrypoint.sh'
         working_dir: '/var/www/app'
         networks:
             - skote
-        ports:
-            - '3000:3000'
         expose:
-            - '3000'
+            - '9000'
+        command: ['/entrypoint.sh']
         links:
             - 'db'
         depends_on:
             - 'db'
-        command: ['/entrypoint.sh']
 
     # MySQL database
     db:
@@ -39,16 +82,16 @@ services:
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         ports:
-            - "${FORWARD_DB_PORT:-13306}:3306"
+            - "${FORWARD_DB_PORT:-13307}:3307"
         healthcheck:
             test: ['CMD', 'mysqladmin', 'ping', '-p${DB_PASSWORD}']
+
 networks:
     skote:
         driver: bridge
 volumes:
     skote-mysql: # Use mysql local (must install mysql local to use)
-        driver: local
-    skote-redis:
         driver: local
     dependencies:
