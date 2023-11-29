@@ -1,15 +1,29 @@
 #!/bin/sh
 WORKSPACE="/var/www/app"
 
+chmod -R 777 $WORKSPACE/storage
+chmod -R 777 $WORKSPACE/bootstrap
+
 cd $WORKSPACE
 
-# Install app dependencies
-yarn install
+# mix assets
+npm install
+npm run prod
 
-# Run the CMD
-exec "$@"
+# install package
+composer install
 
-echo "install dependencies completed!!!"
+# migration
+php artisan migrate
 
-# keep container don't exit code
-tail -f /etc/issue
+# create storage link
+php artisan storage:link
+
+# generate app key
+php artisan key:generate
+
+# start supervisord
+# supervisord -c /etc/supervisor/supervisord.conf
+
+# start php-fpm
+php-fpm -F
