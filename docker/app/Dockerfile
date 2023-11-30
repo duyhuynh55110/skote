@@ -19,3 +19,6 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
+
+ADD ./docker/workers/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+ADD ./docker/workers/php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
