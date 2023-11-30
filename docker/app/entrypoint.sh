@@ -22,8 +22,5 @@ php artisan storage:link
 # generate app key
 php artisan key:generate
 
-# start supervisord
-# supervisord -c /etc/supervisor/supervisord.conf
-
 # start php-fpm
 php-fpm -F

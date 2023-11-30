@@ -159,6 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Modules\ModuleServiceProvider::class,
 
         /*
          * Application Service Providers...
