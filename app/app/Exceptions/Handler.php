@@ -42,9 +42,9 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         // If the request wants JSON (AJAX doesn't always want JSON)
-        if ($request->expectsJson()) {
-            return $this->customApiResponse($request, $e);
-        }
+        // if ($request->expectsJson()) {
+        //     return $this->customApiResponse($request, $e);
+        // }
 
         // Default to the parent class' implementation of handler
         return parent::render($request, $e);

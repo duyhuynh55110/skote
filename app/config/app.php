@@ -160,6 +160,7 @@ return [
          * Package Service Providers...
          */
         App\Modules\ModuleServiceProvider::class,
+        App\Providers\DataBaseQueryServiceProvider::class,
 
         /*
          * Application Service Providers...

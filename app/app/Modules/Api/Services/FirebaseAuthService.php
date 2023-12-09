@@ -50,8 +50,8 @@ class FirebaseAuthService {
         } catch (FailedToVerifyToken|RevokedIdToken $e) {
             throw new AuthenticateHttpException();
         } catch (Throwable $e) {
-            // log error
-            Log::error($e);
+            // log error -> graphql auto log so skip this
+            // Log::error($e);
 
             DB::rollBack();
 
