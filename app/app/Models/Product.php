@@ -16,7 +16,7 @@ class Product extends Model
      * @var array
      */
     protected $visible = [
-        'brand_id', 'name_en', 'name_vi', 'image_file_name',
+        'brand_id', 'slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
 }

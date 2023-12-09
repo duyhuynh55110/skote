@@ -14,14 +14,11 @@ return new class extends Migration
         Schema::create('end_users', function (Blueprint $table) {
             $table->id();
             $table->string('uid', 100)->unique();
-            $table->string('calling_code', 20);
-            $table->string('phone_number', 40);
+            $table->string('phone_number', 40)->unique();
             $table->integer('created_by');
             $table->timestamps();
             $table->integer('updated_by');
             $table->softDeletes();
-
-            $table->unique(['calling_code', 'phone_number']);
         });
     }
 
