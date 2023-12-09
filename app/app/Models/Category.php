@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Brand extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -16,7 +16,7 @@ class Brand extends Model
      * @var array
      */
     protected $visible = [
-        'slug_name', 'name_en', 'name_vi', 'logo_file_name',
+        'slug_name', 'name_en', 'name_vi', 'image_file_name',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
 }

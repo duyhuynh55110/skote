@@ -16,7 +16,7 @@ class EndUser extends Model
      * @var array
      */
     protected $visible = [
-        'uid', 'calling_code', 'phone_number',
+        'uid', 'phone_number',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
 }
