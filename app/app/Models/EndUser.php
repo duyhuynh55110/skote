@@ -16,8 +16,8 @@ class EndUser extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'uid', 'calling_code', 'phone_number',
+    protected $visible = [
+        'uid', 'phone_number',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
 }
