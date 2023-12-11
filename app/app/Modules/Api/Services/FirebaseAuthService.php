@@ -4,14 +4,13 @@ namespace App\Modules\Api\Services;
 use App\Exceptions\AuthenticateHttpException;
 use App\Modules\Api\Repositories\EndUserRepository;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Kreait\Firebase\Contract\Auth;
+use Kreait\Firebase\Contract\Auth as FirebaseAuth;
 use Kreait\Firebase\Exception\Auth\FailedToVerifyToken;
 use Kreait\Firebase\Exception\Auth\RevokedIdToken;
 use Throwable;
 
 class FirebaseAuthService {
-    public function __construct(private Auth $auth, private EndUserRepository $endUserRepo)
+    public function __construct(private FirebaseAuth $auth, private EndUserRepository $endUserRepo)
     {}
 
     /**
@@ -20,7 +19,8 @@ class FirebaseAuthService {
      * @param string $idTOkenString
      * @return \App\Models\EndUser
      */
-    public function signInByAccessToken(string $idTokenString) {
+    public function signInByAccessToken(string $idTokenString): \App\Models\EndUser
+    {
         try {
             // get id by access_token
             $verifiedIdToken = $this->auth->verifyIdToken($idTokenString, true);

@@ -40,8 +40,8 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'firebase-auth-jwt' => [
-            'driver' => 'firebase-auth-jwt'
+        'firebase-jwt' => [
+            'driver' => 'firebase-jwt'
         ]
     ],
 

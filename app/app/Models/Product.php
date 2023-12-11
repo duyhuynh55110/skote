@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -14,11 +15,11 @@ class Product extends Model
     use HasFactory, SoftDeletes, AdminTimestamp;
 
     /**
-     * The attributes that should be visible in arrays.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $visible = [
+    protected $fillable = [
         'brand_id', 'slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
@@ -31,7 +32,6 @@ class Product extends Model
     public function slugName(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->slug_name,
             set: function (string $val) {
                 return slugifyModel($val, $this);
             }
@@ -50,5 +50,15 @@ class Product extends Model
             ->withTimestamps()
             ->withPivot(['deleted_at'])
             ->using(CategoryProduct::class);
+    }
+
+    /**
+     * Product belong to a brand
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
     }
 }

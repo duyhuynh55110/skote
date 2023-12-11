@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // config add firebase authenticate by token
-        Auth::viaRequest('firebase-auth-jwt', function (\Illuminate\Http\Request $request) {
+        Auth::viaRequest('firebase-jwt', function (\Illuminate\Http\Request $request) {
             $firebaseAuthService = app()->make(FirebaseAuthService::class);
             $idTokenString = $request->bearerToken();
 

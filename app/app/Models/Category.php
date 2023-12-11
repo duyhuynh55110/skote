@@ -13,11 +13,11 @@ class Category extends Model
     use HasFactory, SoftDeletes, AdminTimestamp;
 
     /**
-     * The attributes that should be visible in arrays.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $visible = [
+    protected $fillable = [
         'slug_name', 'name_en', 'name_vi', 'image_file_name',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
@@ -30,7 +30,6 @@ class Category extends Model
     public function slugName(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->slug_name,
             set: function (string $val) {
                 return slugifyModel($val, $this);
             }

@@ -17,17 +17,17 @@ class AuthController {
      * @param $request
      * @return void
      */
-    public function signInByAccessToken(Request $request)
-    {
-        $idTokenString = $request->bearerToken();
-        $user = $this->firebaseAuthService->signInByAccessToken($idTokenString);
+    // public function signInByAccessToken(Request $request)
+    // {
+    //     $idTokenString = $request->bearerToken();
+    //     $user = $this->firebaseAuthService->signInByAccessToken($idTokenString);
 
-        return response()->json([
-            'user' => $user
-        ]);
-    }
+    //     return response()->json([
+    //         'user' => $user
+    //     ]);
+    // }
 
-    public function profile() {
-        dd(Auth::user()->id);
-    }
+    // public function profile() {
+    //     dd(Auth::user()->id);
+    // }
 }

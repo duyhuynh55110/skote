@@ -4,10 +4,10 @@ namespace App\Models;
 
 use App\Traits\AdminTimestamp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class EndUser extends Model
+class EndUser extends Authenticatable
 {
     use HasFactory, SoftDeletes, AdminTimestamp;
 
@@ -16,7 +16,7 @@ class EndUser extends Model
      *
      * @var array
      */
-    protected $visible = [
+    protected $fillable = [
         'uid', 'phone_number',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
