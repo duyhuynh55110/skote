@@ -19,16 +19,17 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, defineEmits } from "vue";
 import { verifyOTP } from "@/services/auth.service";
 import { map, catchError, of, finalize } from "rxjs";
-import { AuthErrorCodes } from "firebase/auth";
+import { AuthErrorCodes, User } from "firebase/auth";
 
 const isProcessing = ref(false);
 
 // https://vuejs.org/guide/essentials/template-refs.html#accessing-the-refs
 const btnSubmit = ref(null);
 const errorMessage = ref("");
+const emit = defineEmits(['update:otp']);
 
 // event when submit form
 const updateOtp = (otpCode: string) => {
@@ -42,8 +43,9 @@ const updateOtp = (otpCode: string) => {
   // call API verify OTP code
   verifyOTP(otpCode, window.recaptchaVerifier)
     .pipe(
-      map((uid) => {
-        alert(uid);
+      map((user: User)  => {
+        // callback after verify OTP success
+        emit('update:otp', user);
       }),
       catchError((err) => {
         switch (err.code) {

@@ -43,12 +43,24 @@ export default defineNuxtConfig({
 
   modules: [
     [
+      '@pinia/nuxt',
+      {
+        // no need to import defineStore and acceptHMRUpdate
+        autoImports: ['defineStore', 'acceptHMRUpdate'],
+      },
+    ],
+    [
       '@nuxtjs/i18n',
       {
         locales: ['en'],
         defaultLocale: 'en',
         vueI18n: './nuxt-i18n.ts'
       }
-    ]
+    ],
   ],
+
+  alias: {
+    // https://vueschool.io/lessons/global-state-management-with-pinia
+    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  },
 });

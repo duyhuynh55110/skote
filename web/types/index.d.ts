@@ -1,4 +1,3 @@
-export {}
 import { RecaptchaVerifier, ConfirmationResult } from "firebase/auth";
 
 declare global {

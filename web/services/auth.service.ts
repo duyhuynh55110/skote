@@ -5,8 +5,9 @@
  * https://rxjs.dev/api/index/function/pipe#pipe
  */
 
-import { from, map, tap } from 'rxjs'
-import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, UserCredential } from "firebase/auth"
+import { from, map } from 'rxjs'
+import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, UserCredential, User, Auth } from "firebase/auth"
+import { useAuthStore } from '@/stores/auth.store'
 
 /**
  * Sign in by phone number
@@ -32,12 +33,56 @@ export const signInUsingPhoneNumber = (phoneNumber: string, appVerifier: Recaptc
  * Verify OTP code 
  * 
  * @param otpCode  
+ * @return User
  */
 export const verifyOTP = (otpCode: string) => {
     return from(
         window.confirmationResult.confirm(otpCode)
     )
     .pipe(
-        map((response: UserCredential) => response?.user?.uid),
+        map((response: UserCredential): User => response?.user),
     )
+}
+
+/**
+ * Firebase API fetch user's data 
+ */
+export const identity = () => {
+    const { $auth } = useNuxtApp()
+    const authStore = useAuthStore()
+
+    return from(
+        new Promise<User|null>((resolve, reject) => {
+            $auth.onAuthStateChanged((user: User|null) => {
+                return resolve(user);
+            });
+        })
+    ).pipe(
+        map(
+            (user: User|null) => {
+                // update user's inform to store
+                authStore.currentUser = user;
+            }
+        )
+    );
+}
+
+/**
+ * Firebase API fetch user's data 
+ *   
+ */
+export const signOut = () => {
+    const { $auth } = useNuxtApp()
+    const authStore = useAuthStore()
+
+    return from(
+        $auth.signOut()
+    )
+    .pipe(
+        map(
+            () => {
+                authStore.currentUser = null;
+            }
+        )
+    );
 }
