@@ -1,0 +1,26 @@
+"[Overwrite] Information about pagination using a fully featured paginator."
+type PaginatorInfo {
+  "Number of items in the current page."
+  count: Int!
+
+  "Index of the current page."
+  current_page: Int! @rename(attribute: "currentPage")
+
+  "Index of the first item in the current page."
+  first_item: Int @rename(attribute: "firstItem")
+
+  "Are there more pages after this one?"
+  has_more_pages: Boolean! @rename(attribute: "hasMorePages")
+
+  "Index of the last item in the current page."
+  last_item: Int @rename(attribute: "lastItem")
+
+  "Index of the last available page."
+  last_page: Int! @rename(attribute: "lastPage")
+
+  "Number of items per page."
+  per_page: Int! @rename(attribute: "perPage")
+
+  "Number of total available items."
+  total: Int!
+}

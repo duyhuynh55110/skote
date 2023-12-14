@@ -178,3 +178,38 @@ if(! function_exists('randomNumber')) {
         return $result;
     }
 }
+
+if(! function_exists('getAcceptLocaleHeader')) {
+    /**
+     * Get request header Accept-Locale value
+     *
+     * @return string
+     */
+    function getAcceptLocaleHeader(): string
+    {
+        return request()->header(REQUEST_HEADER_ACCEPT_LOCALE) ?? DEFAULT_LOCALE;
+    }
+}
+
+
+if(! function_exists('displayNameByLocale')) {
+    /**
+     * Display name by header 'Accept-Locale'; default was 'en'
+     *
+     * @param Model $model
+     * @return string
+     */
+    function displayNameByLocale(Model $model): string
+    {
+        $nameColumn = 'name_' . getAcceptLocaleHeader();
+
+        // if not set display name for this locale -> display default locale
+        if(!$model->$nameColumn) {
+            $defaultNameColumn = 'name_' . DEFAULT_LOCALE;
+            return $model->$defaultNameColumn;
+        }
+
+        // display default name
+        return $model->$nameColumn;
+    }
+}

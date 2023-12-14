@@ -8,7 +8,7 @@ class EndUserRepository extends Repository {
     /**
      * Specify Model class name
      *
-     * @return mixed
+     * @return EndUser
      */
     public function model() {
         return EndUser::class;

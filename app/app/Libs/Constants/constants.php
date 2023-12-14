@@ -23,3 +23,10 @@ defined('RESIZE_BRAND_WIDTH') or define('RESIZE_BRAND_WIDTH', 150);
 defined('RESIZE_BRAND_HEIGHT') or define('RESIZE_BRAND_HEIGHT', 150);
 defined('RESIZE_PRODUCT_WIDTH') or define('RESIZE_PRODUCT_WIDTH', 388);
 defined('RESIZE_PRODUCT_HEIGHT') or define('RESIZE_PRODUCT_HEIGHT', 442);
+
+// Request header name
+defined('REQUEST_HEADER_ACCEPT_LOCALE') or define('REQUEST_HEADER_ACCEPT_LOCALE', 'Accept-Locale');
+
+// System default values
+defined('DEFAULT_LOCALE') or define('DEFAULT_LOCALE', 'en');
+

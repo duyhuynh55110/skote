@@ -8,6 +8,9 @@ type Query {
 
     "Find a category by slug_name"
     category(slug_name: String): Category @first
+
+    "Get list categories with paginate"
+    getCategories: [Category!]! @field(resolver: "App\\GraphQL\\Queries\\Category\\GetCategoriesQuery")
 }
 
 # Must authenticate by firebase service
@@ -17,4 +20,3 @@ extend type Query @guard(with: ["firebase-jwt"]) {
 }
 
 #import modules/*.graphql
-
