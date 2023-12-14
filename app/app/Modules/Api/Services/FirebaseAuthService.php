@@ -38,7 +38,6 @@ class FirebaseAuthService {
 
                 $user = $this->endUserRepo->create([
                     'uid' => $uid,
-                    'calling_code' => '+84',
                     'phone_number' => $firebaseUser->phoneNumber
                 ]);
 

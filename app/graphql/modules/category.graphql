@@ -4,6 +4,7 @@ scalar DateTime
 type Category {
     "Unique primary key."
     id: ID!
+
     "Unique slug_name"
     slug_name: String!
 

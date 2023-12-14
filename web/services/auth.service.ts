@@ -69,7 +69,6 @@ export const identity = () => {
 
 /**
  * Firebase API fetch user's data 
- *   
  */
 export const signOut = () => {
     const { $auth } = useNuxtApp()

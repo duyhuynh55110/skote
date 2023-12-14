@@ -34,13 +34,4 @@ class AuthServiceProvider extends ServiceProvider
             return $firebaseAuthService->signInByAccessToken($idTokenString);
         });
     }
-
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-
-    }
-
 }
