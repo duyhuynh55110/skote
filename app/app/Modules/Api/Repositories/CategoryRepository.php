@@ -8,7 +8,7 @@ class CategoryRepository extends Repository {
     /**
      * Specify Model class name
      *
-     * @return mixed
+     * @return Category
      */
     public function model() {
         return Category::class;

@@ -181,14 +181,13 @@ if(! function_exists('randomNumber')) {
 
 if(! function_exists('getAcceptLocaleHeader')) {
     /**
-     * Generate a random digits number with length
+     * Get request header Accept-Locale value
      *
-     * @param int $length
      * @return string
      */
     function getAcceptLocaleHeader(): string
     {
-        return request()->header(HEADER_REQUEST_ACCEPT_LOCALE) ?? DEFAULT_LOCALE;
+        return request()->header(REQUEST_HEADER_ACCEPT_LOCALE) ?? DEFAULT_LOCALE;
     }
 }
 
