@@ -17,7 +17,7 @@ type Category {
     "Path to image"
     image_file_name: String!
 
-     "When the row was created."
+    "When the row was created."
     created_at: DateTime!
 
     "Who create this row"
@@ -31,4 +31,11 @@ type Category {
 
     "When the row was deleted"
     deleted_at: DateTime
+
+    # Mutator & casting
+    "Display valid name with header config"
+    name: String!
+
+    "Full path image to display"
+    full_path_image: String!
 }
