@@ -1,0 +1,29 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+# this type will work with \\App\\Models\\EndUser
+type EndUser {
+    "Unique primary key."
+    id: ID!
+
+    "firebase account uid"
+    uid: String!
+
+    "Full of phone number"
+    phone_number: String!
+
+    "When the row was created."
+    created_at: DateTime!
+
+    "Who create this row"
+    created_by: Int
+
+    "When the row was last updated."
+    updated_at: DateTime!
+
+    "Who update this row"
+    updated_by: Int
+
+    "When the row was deleted"
+    deleted_at: DateTime
+}

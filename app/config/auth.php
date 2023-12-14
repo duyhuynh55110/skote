@@ -40,6 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'firebase-jwt' => [
+            'driver' => 'firebase-jwt'
+        ]
     ],
 
     /*

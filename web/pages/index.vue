@@ -95,8 +95,9 @@
 <style src="./Home.scss" lang="scss" scoped></style>
 
 <script lang="ts" setup>
-    import { ref } from 'vue'
     import Flicking from "@egjs/vue3-flicking";
-
-    const { $bootstrap } = useNuxtApp();
+    
+    definePageMeta({
+        middleware: "fetch-user"
+    })
 </script>

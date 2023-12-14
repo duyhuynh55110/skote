@@ -1,0 +1,20 @@
+# Public queries can call by any application
+type Query {
+    "Find a brand by slug_name"
+    brand(slug_name: String!): Brand @first
+
+    "Find a product by slug_name"
+    product(id: Int!): Product @field(resolver: "App\\GraphQL\\Queries\\GetProduct")
+
+    "Find a category by slug_name"
+    category(slug_name: String): Category @first
+}
+
+# Must authenticate by firebase service
+extend type Query @guard(with: ["firebase-jwt"]) {
+    "[auth] get current user's profile"
+    getProfile: EndUser! @field(resolver: "EndUser\\GetProfile")
+}
+
+#import modules/*.graphql
+

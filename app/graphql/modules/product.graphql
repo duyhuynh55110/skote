@@ -1,0 +1,47 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+# this type will work with \\App\\Models\\Product
+type Product {
+    "Unique primary key."
+    id: ID!
+
+    "Product belongs to a brand"
+    brand_id: Int!
+
+    "Unique slug_name"
+    slug_name: String!
+
+    "English name"
+    name_en: String!
+
+    "VietNam name"
+    name_vi: String
+
+    "Path to image"
+    image_file_name: String!
+
+    "Item price for calculator"
+    item_price: Float!
+
+    "Description about product"
+    description: String
+
+    "When the row was created."
+    created_at: DateTime!
+
+    "Who create this row"
+    created_by: Int
+
+    "When the row was last updated."
+    updated_at: DateTime!
+
+    "Who update this row"
+    updated_by: Int
+
+    "When the row was deleted"
+    deleted_at: DateTime
+
+    "Brand inform"
+    brand: Brand! @belongsTo
+}

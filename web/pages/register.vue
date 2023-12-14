@@ -42,6 +42,7 @@
 
                 <AuthInputOTPCodeForm 
                   v-else-if="isStep == AUTH_INPUT_OTP_CODE_FORM"
+                  @update:otp="verifiedOTPSuccess"
                 />
                 <!-- Step2 - Input OTP code -->
             </div>
@@ -63,11 +64,18 @@ definePageMeta({
 import { InputPhoneNumberForm } from '@/types/form';
 import { ref } from 'vue';
 import { AUTH_INPUT_PHONE_NUMBER_FORM, AUTH_INPUT_OTP_CODE_FORM } from "@/utils/constants";
+import { User } from "firebase/auth"
 
 const isStep = ref(AUTH_INPUT_PHONE_NUMBER_FORM)
 
 // send OTP code success -> go to next step
 const sentOTPCode = (values: InputPhoneNumberForm) => {
   isStep.value++;
+}
+
+// event when user input OTP code success
+const verifiedOTPSuccess = async (user: User) => {
+  // go to homepage
+  await navigateTo('/')
 }
 </script>
