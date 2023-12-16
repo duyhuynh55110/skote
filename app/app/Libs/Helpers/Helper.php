@@ -205,8 +205,8 @@ if(! function_exists('displayNameByLocale')) {
 
         // if not set display name for this locale -> display default locale
         if(!$model->$columnName) {
-            $columnNameDefault = 'name_' . DEFAULT_LOCALE;
-            return $model->$columnNameDefault;
+            $defaultColumnName = 'name_' . DEFAULT_LOCALE;
+            return $model->$defaultColumnName;
         }
 
         // display value from column name
@@ -219,6 +219,7 @@ if(! function_exists('getFullPathToImage')) {
      * Get full path to image by column
      *
      * @param Model $model
+     * @param string $columnName
      * @return string
      */
     function getFullPathToImage(Model $model, string $columnName): string
