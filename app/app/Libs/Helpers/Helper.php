@@ -201,15 +201,28 @@ if(! function_exists('displayNameByLocale')) {
      */
     function displayNameByLocale(Model $model): string
     {
-        $nameColumn = 'name_' . getAcceptLocaleHeader();
+        $columnName = 'name_' . getAcceptLocaleHeader();
 
         // if not set display name for this locale -> display default locale
-        if(!$model->$nameColumn) {
-            $defaultNameColumn = 'name_' . DEFAULT_LOCALE;
-            return $model->$defaultNameColumn;
+        if(!$model->$columnName) {
+            $columnNameDefault = 'name_' . DEFAULT_LOCALE;
+            return $model->$columnNameDefault;
         }
 
-        // display default name
-        return $model->$nameColumn;
+        // display value from column name
+        return $model->$columnName;
+    }
+}
+
+if(! function_exists('getFullPathToImage')) {
+    /**
+     * Get full path to image by column
+     *
+     * @param Model $model
+     * @return string
+     */
+    function getFullPathToImage(Model $model, string $columnName): string
+    {
+        return $model->$columnName ?  Storage::url($model->$columnName) : null;
     }
 }
