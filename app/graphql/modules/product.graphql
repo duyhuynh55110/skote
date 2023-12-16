@@ -42,6 +42,13 @@ type Product {
     "When the row was deleted"
     deleted_at: DateTime
 
+    # Mutator & casting
+    "Display valid name with header config"
+    name: String!
+
+    "Full path image to display"
+    full_path_image: String!
+
     "Brand inform"
     brand: Brand! @belongsTo
 }

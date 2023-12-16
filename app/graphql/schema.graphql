@@ -5,6 +5,7 @@ type Query {
 
     "Find a product by slug_name"
     product(id: Int!): Product @field(resolver: "App\\GraphQL\\Queries\\GetProduct")
+    getProducts(search: String @search): [Product!]! @paginate(resolver: "App\\GraphQL\\Queries\\Product\\GetProductsQuery")
 
     "Find a category by slug_name"
     category(slug_name: String): Category @first

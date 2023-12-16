@@ -38,6 +38,32 @@ class Product extends Model
         );
     }
 
+    /**
+     * Get full path for products.image_file_name
+     *
+     * @return Attribute
+     */
+    public function fullPathImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => getFullPathToImage($this, 'image_file_name')
+        );
+    }
+
+    /**
+     * Get valid name by header locale
+     *
+     * @return Attribute
+     */
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return displayNameByLocale($this);
+            }
+        );
+    }
+
     // ---- Relations
     /**
      * Product belong to many categories

@@ -162,6 +162,7 @@ return [
         App\Modules\ModuleServiceProvider::class,
         App\Providers\DataBaseQueryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        \Nuwave\Lighthouse\Scout\ScoutServiceProvider::class,
 
         /*
          * Application Service Providers...
