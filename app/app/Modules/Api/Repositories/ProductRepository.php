@@ -38,4 +38,15 @@ class ProductRepository extends Repository
         ->orderBy('id', 'DESC')
         ->paginate($perPage, $columns, 'page', $page);
     }
+
+    /**
+     * Get a product detail by slug_name
+     *
+     * @param string $slugName
+     * @param array $columns
+     * @return Product
+     */
+    public function getProductBySlugName(string $slugName, array $columns = ['*']) {
+        return $this->model->select($columns)->where('slug_name', $slugName)->first();
+    }
 }
