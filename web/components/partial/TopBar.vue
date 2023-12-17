@@ -89,9 +89,9 @@
                     </div>
 
                     <div class="dropdown d-inline-block">
-                        <button v-if="!currentUser" type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/register')">
+                        <button v-if="!currentUser" type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/login')">
                             <i class="fas fa-sign-in-alt"></i>
-                            {{ $t('SIGN_IN') }}/{{ $t('REGISTER') }}
+                            {{ $t('SIGN_IN') }}
                         </button>
                         <!-- Sign In/Register -->
 
