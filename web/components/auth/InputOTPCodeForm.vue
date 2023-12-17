@@ -19,15 +19,17 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, defineEmits } from "vue";
+import { ref, defineEmits } from "vue";
 import { verifyOTP } from "@/services/auth.service";
 import { map, catchError, of, finalize } from "rxjs";
 import { AuthErrorCodes, User } from "firebase/auth";
+import { useAuthStore } from '@/stores/auth.store'
 
-const isProcessing = ref(false);
+const authStore = useAuthStore()
 
 // https://vuejs.org/guide/essentials/template-refs.html#accessing-the-refs
 const btnSubmit = ref(null);
+const isProcessing = ref(false);
 const errorMessage = ref("");
 const emit = defineEmits(['update:otp']);
 
@@ -44,6 +46,9 @@ const updateOtp = (otpCode: string) => {
   verifyOTP(otpCode, window.recaptchaVerifier)
     .pipe(
       map((user: User)  => {
+        // update state user in store apply change
+        authStore.currentUser = user;
+
         // callback after verify OTP success
         emit('update:otp', user);
       }),

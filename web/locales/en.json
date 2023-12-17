@@ -1,4 +1,7 @@
 {
+    "SYSTEM_MESSAGES": {
+        "WELCOME_BACK": "Welcome back <b> {username} </b>! Hope you will have a great times"
+    },
     "TOP_CATEGORIES": "Top Categories",
     "USERNAME": "username",
     "PASSWORD": "password",
@@ -20,7 +23,6 @@
         "TOO_MANY_TIME": "You have tried to send the OTP code many times. Please try again later",
         "SOMETHING_WAS_WRONG": "Something was wrong. Please try again"
     },
-    "REGISTER": "Register",
     "SIGN_IN": "Sign In",
     "DASHBOARD": "Dashboard"
 }
