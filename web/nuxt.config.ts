@@ -39,6 +39,7 @@ export default defineNuxtConfig({
     { src: '~/plugins/bootstrap.client', mode: 'client' },
     { src: '~/plugins/directive.client', mode: 'client' },
     { src: '~/plugins/firebase.client', mode: 'client' },
+    { src: '~/plugins/ui-provider.client', mode: 'client' },
   ],
 
   modules: [

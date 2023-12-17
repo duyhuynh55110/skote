@@ -1,6 +1,6 @@
 {
     "SYSTEM_MESSAGES": {
-        "WELCOME_BACK": "Welcome back <b> {username} </b>! Hope you will have a great times"
+        "WELCOME_BACK": "Welcome back {username}! Hope you will have a great times"
     },
     "TOP_CATEGORIES": "Top Categories",
     "USERNAME": "username",
@@ -24,5 +24,6 @@
         "SOMETHING_WAS_WRONG": "Something was wrong. Please try again"
     },
     "SIGN_IN": "Sign In",
-    "DASHBOARD": "Dashboard"
+    "DASHBOARD": "Dashboard",
+    "WELCOME": "Welcome"
 }

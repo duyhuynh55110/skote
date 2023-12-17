@@ -65,9 +65,8 @@ import { InputPhoneNumberForm } from '@/types/form';
 import { ref } from 'vue';
 import { AUTH_INPUT_PHONE_NUMBER_FORM, AUTH_INPUT_OTP_CODE_FORM } from "@/utils/constants";
 import { User } from "firebase/auth"
-import { $Toast } from '~/components/ui/provides/toast.provide';
 
-const { $i18n } = useNuxtApp()
+const { $Toast, $i18n } = useNuxtApp()
 
 const isStep = ref(AUTH_INPUT_PHONE_NUMBER_FORM)
 
@@ -78,7 +77,7 @@ const sentOTPCode = (values: InputPhoneNumberForm) => {
 
 // event when user input OTP code success
 const verifiedOTPSuccess = async (user: User) => {
-  $Toast.success($i18n.t("SYSTEM_MESSAGES.WELCOME_BACK", { username: user.phoneNumber }));
+  $Toast.info($i18n.t('WELCOME'), $i18n.t("SYSTEM_MESSAGES.WELCOME_BACK", { username: user?.phoneNumber }));
 
   // go to homepage
   await navigateTo('/')
