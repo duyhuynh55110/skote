@@ -1,5 +1,6 @@
 <template>
-    <div id="layout-wrapper">
+    <UIProvider>
+        <!-- TopBar -->
         <PartialTopBar /> 
 
         <!-- Page content -->
@@ -10,7 +11,11 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Footer -->
         <PartialFooter /> 
-    </div>
+    </UIProvider>
 </template>
+
+<script setup lang="ts">
+</script>
