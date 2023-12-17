@@ -19,6 +19,7 @@ export default defineComponent({
                     key="toast-container"
                 >
                     {
+                        // render message list 
                         this.$Toast.messagesList.value.map(
                             message => message.type !== MessageType.INFO
                             ? <ToastMessage key={message.id} message={message} />
@@ -30,4 +31,3 @@ export default defineComponent({
         )
     }
 })
-
