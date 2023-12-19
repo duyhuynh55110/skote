@@ -67,4 +67,12 @@ export default defineNuxtConfig({
     // https://vueschool.io/lessons/global-state-management-with-pinia
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
   },
+
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+    detectBrowserLanguage: false,
+    // Reference the Vue I18n config file
+    vueI18n: "./i18n.config.ts",
+  },
 });

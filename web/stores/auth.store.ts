@@ -1,5 +1,4 @@
-import { User } from 'firebase/auth'
-// import { ref, Ref } from "vue"
+import { type User } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({

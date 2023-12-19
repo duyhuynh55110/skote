@@ -61,10 +61,10 @@ definePageMeta({
   layout: "authenticate",
 });
 
-import { InputPhoneNumberForm } from '@/types/form';
+import { type InputPhoneNumberForm } from '@/types/form';
 import { ref } from 'vue';
 import { AUTH_INPUT_PHONE_NUMBER_FORM, AUTH_INPUT_OTP_CODE_FORM } from "@/utils/constants";
-import { User } from "firebase/auth"
+import { type User } from "firebase/auth"
 
 const { $Toast, $i18n } = useNuxtApp()
 

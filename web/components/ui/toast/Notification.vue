@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts">
-    import { defineProps } from "vue";
-    import { Message } from "@/provider"
+    import { type Message } from "@/provider"
     import { CLOSE_TOAST_TIMEOUT } from "@/enum/constants"
 
     const { $Toast } = useNuxtApp()

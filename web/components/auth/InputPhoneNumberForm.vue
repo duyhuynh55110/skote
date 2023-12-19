@@ -61,9 +61,9 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import { map, finalize, of } from 'rxjs';
+import { map, finalize } from 'rxjs';
 import { RecaptchaVerifier } from 'firebase/auth';
-import { InputPhoneNumberForm } from '@/types/form';
+import { type InputPhoneNumberForm } from '@/types/form';
 import { PHONE_REG_EXP } from "@/utils/constants";
 import { signInUsingPhoneNumber } from "@/services/auth.service";
 
