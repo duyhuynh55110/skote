@@ -2,6 +2,15 @@
 export default defineNuxtConfig({
   // false -> using client-side rendering
   ssr: false,
+
+  devtools: { enabled: false },
+
+  // disable vite for server
+  vite: {
+     server: {
+       hmr: false
+     }
+  },
   
   // https://nuxt.com/docs/guide/going-further/runtime-config
   runtimeConfig: {
@@ -14,6 +23,7 @@ export default defineNuxtConfig({
       FB_MESSAGING_SENDER_ID: process.env.FB_MESSAGING_SENDER_ID,
       FB_APP_ID: process.env.FB_APP_ID,
       FB_MEASUREMENT_ID: process.env.FB_MEASUREMENT_ID,
+      APP_API_DOMAIN: process.env.APP_API_DOMAIN,
     }
   },
 
@@ -50,14 +60,7 @@ export default defineNuxtConfig({
         autoImports: ['defineStore', 'acceptHMRUpdate'],
       },
     ],
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: ['en'],
-        defaultLocale: 'en',
-        vueI18n: './nuxt-i18n.ts'
-      }
-    ],
+    '@nuxtjs/i18n',
   ],
 
   alias: {

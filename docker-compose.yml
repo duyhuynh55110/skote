@@ -40,9 +40,9 @@ services:
         networks:
             - skote
         ports:
-            - '8080:8080' # when run 'npm run serve'
+            - '3000:3000' # when run 'npm run dev'
         expose:
-            - '8080'
+            - '3000'
         command: ['/entrypoint.sh']
 
     # (Laravel) API application
