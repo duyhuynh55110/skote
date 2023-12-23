@@ -22,7 +22,7 @@
 import { ref, defineEmits } from "vue";
 import { verifyOTP } from "@/services/auth.service";
 import { map, catchError, of, finalize } from "rxjs";
-import { AuthErrorCodes, User } from "firebase/auth";
+import { AuthErrorCodes, type User } from "firebase/auth";
 import { useAuthStore } from '@/stores/auth.store'
 
 const authStore = useAuthStore()

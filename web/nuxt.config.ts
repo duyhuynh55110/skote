@@ -2,6 +2,15 @@
 export default defineNuxtConfig({
   // false -> using client-side rendering
   ssr: false,
+
+  devtools: { enabled: false },
+
+  // disable vite for server
+  vite: {
+     server: {
+       hmr: false
+     }
+  },
   
   // https://nuxt.com/docs/guide/going-further/runtime-config
   runtimeConfig: {
@@ -50,18 +59,31 @@ export default defineNuxtConfig({
         autoImports: ['defineStore', 'acceptHMRUpdate'],
       },
     ],
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: ['en'],
-        defaultLocale: 'en',
-        vueI18n: './nuxt-i18n.ts'
-      }
-    ],
+    '@nuxtjs/i18n',
+    '@nuxtjs/apollo'
   ],
 
   alias: {
     // https://vueschool.io/lessons/global-state-management-with-pinia
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  },
+
+  // https://i18n.nuxtjs.org/getting-started/setup
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+    detectBrowserLanguage: false,
+    // Reference the Vue I18n config file
+    vueI18n: "./i18n.config.ts",
+  },
+
+  // https://apollo.nuxtjs.org/getting-started/quick-start
+  apollo: {
+    autoImports: true,
+    clients: {
+      default: {
+        httpEndpoint: process.env.APP_API_DOMAIN as string
+      }
+    },
   },
 });

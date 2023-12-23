@@ -138,8 +138,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef } from "vue" 
-import { User } from "firebase/auth"
+import { computed, type ComputedRef } from "vue" 
+import { type User } from "firebase/auth"
 import { signOut } from "@/services/auth.service"
 import { useAuthStore } from "@/stores/auth.store"
 

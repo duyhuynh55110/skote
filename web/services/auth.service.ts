@@ -6,7 +6,7 @@
  */
 
 import { from, map } from 'rxjs'
-import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, UserCredential, User, Auth } from "firebase/auth"
+import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, type UserCredential, type User } from "firebase/auth"
 import { useAuthStore } from '@/stores/auth.store'
 
 /**

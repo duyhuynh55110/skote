@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from "firebase/auth"
 
-export default defineNuxtPlugin(nuxtApp => {
+export default defineNuxtPlugin(() => {
     const config = useRuntimeConfig()
 
     const firebaseConfig = {
@@ -13,11 +13,13 @@ export default defineNuxtPlugin(nuxtApp => {
         appId: config.public.FB_APP_ID,
         measurementId: config.public.FB_MEASUREMENT_ID
     };
-
+    
     const app = initializeApp(firebaseConfig)
     const auth = getAuth(app)
 
-    // enables 'auth' available in template
-    nuxtApp.vueApp.provide('auth', auth)
-    nuxtApp.provide('auth', auth)
+    return {
+        provide: {
+            auth // add auth to global -> $auth
+        }
+    }
 })

@@ -4,13 +4,14 @@
             <div class="col-2">
                 <div class="categories-dropdown-wrap card">
                     <div class="categories-dropdown-inner card-body py-3">
-                        <ul>
-                            <li v-for="i in 12" :key="i">
-                                <a href="https://nest.botble.com/product-categories/milks-and-dairies" class="text-muted d-flex align-items-center mb-3">
-                                    <img :src="`https://nest.botble.com/storage/product-categories/icon-${i}.png`" class="img-fluid me-2" width="20"> Milks and Dairies 
+                        <div v-if="categoriesRef.loading" class="list-loading"></div>
+                        <ul v-else>
+                            <li v-for="(category, i) in categoriesRef.data" :key="i">
+                                <a href="#" class="text-muted d-flex align-items-center mb-3">
+                                    <img :src="category.full_path_image" class="img-fluid me-2" width="20"> {{ category.name }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> 
                         <!-- Categories list -->
                     </div>
                 </div>
@@ -95,9 +96,45 @@
 <style src="./Home.scss" lang="scss" scoped></style>
 
 <script lang="ts" setup>
+    import { reactive } from "vue";
     import Flicking from "@egjs/vue3-flicking";
-    
+    import type { Category } from "@/types/category";
+    import { getCategories } from "@/services/category.service";
+    import type { AQRGetCategories } from '@/types/apolloQueryReturn';
+
+    // config page
     definePageMeta({
         middleware: "fetch-user"
     })
+
+    // state data
+    const categoriesRef = reactive<{
+        loading: boolean,
+        data: Category[]
+    }>({
+        loading: false,
+        data: []
+    });
+    
+    // call API fetch categories list
+    const fetchCategories = () => {
+        categoriesRef.loading = true;
+
+        getCategories().subscribe({
+            next: (result: AQRGetCategories) => {
+                categoriesRef.loading = result.loading;
+                
+                // set data when fetch completed
+                if(!result.loading) {
+                    categoriesRef.data = result?.data?.getCategories;
+                }
+            },
+            error: (err) => {
+                // Handle errors from the RxJS Observable
+                console.error('Error:', err);
+            },
+        });
+    }
+
+    fetchCategories()
 </script>

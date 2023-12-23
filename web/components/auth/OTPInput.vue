@@ -2,7 +2,7 @@
   <div class="otp-container" ref="otpCont">
     <!-- input fields for OTP digits -->
     <input
-      v-for="(el, ind) in props.digitCount"
+      v-for="(el, ind) in digitCount"
       :key="ind"
       type="text"
       class="form-control otp-input"
