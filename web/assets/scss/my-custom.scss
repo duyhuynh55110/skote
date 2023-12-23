@@ -29,3 +29,15 @@
     transform: rotate(1turn);
   }
 }
+
+.list-loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: url('@/assets/images/loading.svg');
+    width: 5rem;
+  }
+}

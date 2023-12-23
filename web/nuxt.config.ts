@@ -23,7 +23,6 @@ export default defineNuxtConfig({
       FB_MESSAGING_SENDER_ID: process.env.FB_MESSAGING_SENDER_ID,
       FB_APP_ID: process.env.FB_APP_ID,
       FB_MEASUREMENT_ID: process.env.FB_MEASUREMENT_ID,
-      APP_API_DOMAIN: process.env.APP_API_DOMAIN,
     }
   },
 
@@ -61,6 +60,7 @@ export default defineNuxtConfig({
       },
     ],
     '@nuxtjs/i18n',
+    '@nuxtjs/apollo'
   ],
 
   alias: {
@@ -68,11 +68,22 @@ export default defineNuxtConfig({
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
   },
 
+  // https://i18n.nuxtjs.org/getting-started/setup
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
     detectBrowserLanguage: false,
     // Reference the Vue I18n config file
     vueI18n: "./i18n.config.ts",
+  },
+
+  // https://apollo.nuxtjs.org/getting-started/quick-start
+  apollo: {
+    autoImports: true,
+    clients: {
+      default: {
+        httpEndpoint: process.env.APP_API_DOMAIN as string
+      }
+    },
   },
 });
