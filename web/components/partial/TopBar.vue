@@ -88,30 +88,34 @@
                         </div>
                     </div>
 
-                    <div class="dropdown d-inline-block">
-                        <button v-if="!currentUser" type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/login')">
-                            <i class="fas fa-sign-in-alt"></i>
-                            {{ $t('SIGN_IN') }}
-                        </button>
-                        <!-- Sign In/Register -->
-
-                        <div v-else class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="@/assets/images/users/avatar-1.jpg"
-                                    alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1"> {{ currentUser.phoneNumber }} </span>
-                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                            </button>
-                            <!-- Button open dropdown -->
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
-                                <!-- item-->
-                                <button class="dropdown-item text-danger" @click.prevent.native="handleSignOut"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</button>
+                    <ClientOnly>
+                        <div class="dropdown d-inline-block">
+                            <div v-if="!currentUser">
+                                <button type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/login')">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    {{ $t('SIGN_IN') }}
+                                </button>
                             </div>
-                            <!-- User's dropdown -->
-                        </div>
-                        <!-- User's profile -->
-                    </div>  
+                            <!-- Sign In/Register -->
+
+                            <div v-else class="dropdown d-inline-block">
+                                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img class="rounded-circle header-profile-user" src="@/assets/images/users/avatar-1.jpg"
+                                        alt="Header Avatar">
+                                    <span class="d-none d-xl-inline-block ms-1"> {{ currentUser.phoneNumber }} </span>
+                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                </button>
+                                <!-- Button open dropdown -->
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
+                                    <!-- item-->
+                                    <button class="dropdown-item text-danger" @click.prevent.native="handleSignOut"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</button>
+                                </div>
+                                <!-- User's dropdown -->
+                            </div>
+                            <!-- User's profile -->
+                        </div>  
+                    </ClientOnly>
                     
                 </div>
             </div>

@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 import { verifyOTP } from "@/services/auth.service";
 import { map, catchError, of, finalize } from "rxjs";
 import { AuthErrorCodes, type User } from "firebase/auth";

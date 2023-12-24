@@ -26,5 +26,8 @@
     "SIGN_IN": "Sign In",
     "DASHBOARD": "Dashboard",
     "WELCOME": "Welcome",
-    "POPULAR_PRODUCTS": "popular products"
+    "POPULAR_PRODUCTS": "popular products",
+    "TOP_SELLING": "top selling",
+    "RECENTLY_ADDED": "recently added",
+    "TRENDING_PRODUCTS": "trending products"
 }

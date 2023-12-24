@@ -5,13 +5,15 @@
                 <div class="categories-dropdown-wrap card">
                     <div class="categories-dropdown-inner card-body py-3">
                         <div v-if="categoriesRef.loading" class="list-loading"></div>
-                        <ul v-else>
-                            <li v-for="(category, i) in categoriesRef.data" :key="i">
-                                <a href="#" class="text-muted d-flex align-items-center mb-3">
-                                    <img :src="category.full_path_image" class="img-fluid me-2" width="20"> {{ category.name }}
-                                </a>
-                            </li>
-                        </ul> 
+                        <div v-else>
+                            <ul>
+                                <li v-for="(category, i) in categoriesRef.data" :key="i">
+                                    <a href="#" class="text-muted d-flex align-items-center mb-3">
+                                        <img :src="category.full_path_image" class="img-fluid me-2" width="20"> {{ category.name }}
+                                    </a>
+                                </li>
+                            </ul> 
+                        </div>
                         <!-- Categories list -->
                     </div>
                 </div>
@@ -101,11 +103,6 @@
     import type { Category } from "@/types/category";
     import { getCategories } from "@/services/category.service";
     import type { AQRGetCategories } from '@/types/apolloQueryReturn';
-
-    // config page
-    definePageMeta({
-        middleware: "fetch-user"
-    })
 
     // state data
     const categoriesRef = reactive<{

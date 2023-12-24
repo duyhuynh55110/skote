@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // false -> using client-side rendering
-  ssr: false,
+  // ssr: false,
 
   devtools: { enabled: false },
 
@@ -11,7 +11,13 @@ export default defineNuxtConfig({
        hmr: false
      }
   },
-  
+
+  // https://github.com/nuxt/nuxt/discussions/16539#discussioncomment-6460605
+  build: {
+    transpile: ["rxjs"],
+  },
+
+
   // https://nuxt.com/docs/guide/going-further/runtime-config
   runtimeConfig: {
     // Keys within public, will be also exposed to the client-side
@@ -43,14 +49,6 @@ export default defineNuxtConfig({
     '~/assets/scss/app.scss'
   ],
 
-  plugins: [
-    // avoid call bootstrap event on server hook
-    { src: '~/plugins/bootstrap.client', mode: 'client' },
-    { src: '~/plugins/directive.client', mode: 'client' },
-    { src: '~/plugins/firebase.client', mode: 'client' },
-    { src: '~/plugins/ui-provider.client', mode: 'client' },
-  ],
-
   modules: [
     [
       '@pinia/nuxt',
@@ -62,11 +60,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/apollo'
   ],
-
-  alias: {
-    // https://vueschool.io/lessons/global-state-management-with-pinia
-    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
-  },
 
   // https://i18n.nuxtjs.org/getting-started/setup
   i18n: {
