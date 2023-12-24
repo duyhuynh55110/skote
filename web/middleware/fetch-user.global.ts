@@ -1,4 +1,4 @@
-import { map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { useGlobalStore } from "@/stores/global.store"
 import { identity } from "@/services/auth.service"
 
@@ -9,9 +9,11 @@ export default defineNuxtRouteMiddleware(async () => {
     if(store.initialAuth) return
 
     // firebase fetch API to get current user inform
-    await identity().pipe(
+    const identity$ = identity().pipe(
         map(
             () => { store.initialAuth = true; }
         )
-    ).toPromise();
+    );
+
+    await lastValueFrom(identity$);
 })
