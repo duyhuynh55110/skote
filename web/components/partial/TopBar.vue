@@ -5,23 +5,14 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="@/assets/images/logo.svg" alt="" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="@/assets/images/logo-dark.png" alt="" height="17">
-                            </span>
-                        </a>
-
-                        <a href="index.html" class="logo logo-light">
+                        <NuxtLink to="/" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="@/assets/images/logo-light.svg" alt="" height="22">
                             </span>
                             <span class="logo-lg">
                                 <img src="@/assets/images/logo-light.png" alt="" height="19">
                             </span>
-                        </a>
+                        </NuxtLink>
                     </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">
@@ -88,31 +79,34 @@
                         </div>
                     </div>
 
-                    <div class="dropdown d-inline-block">
-                        <button v-if="!currentUser" type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/login')">
-                            <i class="fas fa-sign-in-alt"></i>
-                            {{ $t('SIGN_IN') }}
-                        </button>
-                        <!-- Sign In/Register -->
-
-                        <div v-else class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="@/assets/images/users/avatar-1.jpg"
-                                    alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1"> {{ currentUser.phoneNumber }} </span>
-                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                            </button>
-                            <!-- Button open dropdown -->
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
-                                <!-- item-->
-                                <button class="dropdown-item text-danger" @click.prevent.native="handleSignOut"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</button>
+                    <ClientOnly>
+                        <div class="dropdown d-inline-block">
+                            <div v-if="!currentUser">
+                                <button type="button" class="btn header-item waves-effect" @click.once="() => navigateTo('/login')">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    {{ $t('SIGN_IN') }}
+                                </button>
                             </div>
-                            <!-- User's dropdown -->
-                        </div>
-                        <!-- User's profile -->
-                    </div>  
-                    
+                            <!-- Sign In/Register -->
+
+                            <div v-else class="dropdown d-inline-block">
+                                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img class="rounded-circle header-profile-user" src="@/assets/images/users/avatar-1.jpg"
+                                        alt="Header Avatar">
+                                    <span class="d-none d-xl-inline-block ms-1"> {{ currentUser.phoneNumber }} </span>
+                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                </button>
+                                <!-- Button open dropdown -->
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
+                                    <!-- item-->
+                                    <button class="dropdown-item text-danger" @click.prevent.native="handleSignOut"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</button>
+                                </div>
+                                <!-- User's dropdown -->
+                            </div>
+                            <!-- User's profile -->
+                        </div>  
+                    </ClientOnly>
                 </div>
             </div>
         </header>
