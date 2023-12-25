@@ -134,7 +134,7 @@
 <script setup lang="ts">
 import { computed, type ComputedRef } from "vue" 
 import { type User } from "firebase/auth"
-import { signOut } from "@/services/auth.service"
+import { signOut } from "@/services"
 import { useAuthStore } from "@/stores/auth.store"
 
 const authStore = useAuthStore()

@@ -1,4 +1,4 @@
-import { from, of, switchMap, Subject, Observable } from 'rxjs'
+import { from, of, switchMap, Observable } from 'rxjs'
 import type { AQRGetCategories } from '@/types/apolloQueryReturn';
 
 const GET_CATEGORIES = gql`

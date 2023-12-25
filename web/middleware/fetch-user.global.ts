@@ -1,8 +1,9 @@
 import { lastValueFrom, map } from 'rxjs';
 import { useGlobalStore } from "@/stores/global.store"
-import { identity } from "@/services/auth.service"
+import { identity } from "@/services"
 
 export default defineNuxtRouteMiddleware(async () => {
+    // only fetch user from client
     if(process.server) { return; }
 
     const store = useGlobalStore()

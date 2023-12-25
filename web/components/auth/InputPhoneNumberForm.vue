@@ -65,7 +65,7 @@ import { map, finalize } from 'rxjs';
 import { RecaptchaVerifier } from 'firebase/auth';
 import { type InputPhoneNumberForm } from '@/types/form';
 import { PHONE_REG_EXP } from "@/utils/constants";
-import { signInUsingPhoneNumber } from "@/services/auth.service";
+import { signInUsingPhoneNumber } from "@/services";
 
 // validator 
 import { useForm } from "vee-validate";

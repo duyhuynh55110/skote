@@ -33,10 +33,17 @@ class ProductRepository extends Repository
         array $filter = []
     ) {
         // https://laravel.com/docs/10.x/queries#full-text-where-clauses
-        return $this->model
-        ->whereFullText(['name_en', 'name_vi'], $filter['search'] ?? null)
-        ->orderBy('id', 'DESC')
-        ->paginate($perPage, $columns, 'page', $page);
+        $query = $this->model;
+
+        // filter by search string
+        $query->when(
+            isset($filter['search']) && !empty($filter['search']),
+            function ($q) use ($filter) {
+                $q->whereFullText(['name_en', 'name_vi'], $filter['search']);
+            }
+        );
+
+        return $query->orderBy('id', 'DESC')->paginate($perPage, $columns, 'page', $page);
     }
 
     /**
