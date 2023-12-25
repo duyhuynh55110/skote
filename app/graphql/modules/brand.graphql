@@ -3,33 +3,12 @@ scalar DateTime
 
 # this type will work with \\App\\Models\\Brand
 type Brand {
-    "Unique primary key."
-    id: ID!
-
     "Unique slug_name"
     slug_name: String!
 
-    "English name"
-    name_en: String!
+    "display name by locale"
+    name: String!
 
-    "VietNam name"
-    name_vi: String
-
-    "Path to logo image"
-    logo_file_name: String!
-
-    "When the row was created."
-    created_at: DateTime!
-
-    "Who create this row"
-    created_by: Int
-
-    "When the row was last updated."
-    updated_at: DateTime!
-
-    "Who update this row"
-    updated_by: Int
-
-    "When the row was deleted"
-    deleted_at: DateTime
+    "Link to logo image"
+    full_path_logo: String!
 }

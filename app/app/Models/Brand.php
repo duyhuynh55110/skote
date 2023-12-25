@@ -35,4 +35,30 @@ class Brand extends Model
             }
         );
     }
+
+    /**
+     * Get full path for brands.logo_file_name
+     *
+     * @return Attribute
+     */
+    public function fullPathLogo(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => getFullPathToImage($this, 'logo_file_name')
+        );
+    }
+
+    /**
+     * Get valid name by header locale
+     *
+     * @return Attribute
+     */
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return displayNameByLocale($this);
+            }
+        );
+    }
 }

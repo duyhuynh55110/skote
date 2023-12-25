@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { verifyOTP } from "@/services/auth.service";
+import { verifyOTP } from "@/services";
 import { map, catchError, of, finalize } from "rxjs";
 import { AuthErrorCodes, type User } from "firebase/auth";
 import { useAuthStore } from '@/stores/auth.store'
@@ -28,7 +28,6 @@ import { useAuthStore } from '@/stores/auth.store'
 const authStore = useAuthStore()
 
 // https://vuejs.org/guide/essentials/template-refs.html#accessing-the-refs
-const btnSubmit = ref(null);
 const isProcessing = ref(false);
 const errorMessage = ref("");
 const emit = defineEmits(['update:otp']);
