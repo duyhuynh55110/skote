@@ -77,14 +77,4 @@ watch(() => productsRef.orderBy, async () => {
 
 // created hook - fetching data on first load
 await fetchProducts()
-
-// onMounted(
-//   () => {
-//     window.onscroll = async () => {
-//       if ((window.scrollY + window.innerHeight >= document.body.scrollHeight) && !productsRef.loading) {
-//         await fetchProducts()
-//       }
-//     }
-//   }
-// )
 </script>

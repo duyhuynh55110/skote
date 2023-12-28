@@ -4,7 +4,7 @@
 export default defineNuxtPlugin((nuxtApp) => {
     // enables v-mask in templates
     nuxtApp.vueApp.directive("mask", {
-        mounted: (el, binding) => {
+        mounted: (el: HTMLElement, binding) => {
     
         let mask = binding.value
         let first = mask.indexOf("_")
@@ -94,8 +94,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     // enable v-lazyload in template
     nuxtApp.vueApp.directive("lazy-load", {
         mounted: (el: HTMLElement) => {
-            if(process.server) return
-
             // Process onload & onerror image
             const loadImage = () => {
                 const imageElement = el;

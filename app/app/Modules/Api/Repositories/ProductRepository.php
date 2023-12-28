@@ -34,9 +34,9 @@ class ProductRepository extends Repository
         array $columns = ['*'],
         array $filter = []
     ) {
-        // https://laravel.com/docs/10.x/queries#full-text-where-clauses
         $query = $this->model->select($columns);
 
+        // https://laravel.com/docs/10.x/queries#full-text-where-clauses
         // filter by search string
         $query->when(
             isset($filter['search']) && !empty($filter['search']),

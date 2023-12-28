@@ -228,6 +228,7 @@ const handleSignOut = (): void => {
   signOut().subscribe();
 };
 
+// items in topnav
 const navbarLinks = [
   {
     icon: '<i class="bx bx-home-circle mr-2"></i>',
