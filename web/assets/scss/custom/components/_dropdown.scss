@@ -11,6 +11,10 @@
   position: absolute;
   z-index: 1000;
 
+  .dropdown-item {
+    cursor: pointer;
+  }
+  
   &.show {
     top: 100%!important;
   }

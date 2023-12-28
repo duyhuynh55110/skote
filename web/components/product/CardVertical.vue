@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row no-gutters align-items-center">
             <div class="col-md-4">
-                <img class="card-img img-fluid p-1" :src="product.full_path_image" alt="Card image">
+                <UiLazyImage :source="product.full_path_image" />
             </div>
             <div class="col-md-8">
                 <div class="card-body">
