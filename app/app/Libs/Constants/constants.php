@@ -30,3 +30,9 @@ defined('REQUEST_HEADER_ACCEPT_LOCALE') or define('REQUEST_HEADER_ACCEPT_LOCALE'
 // System default values
 defined('DEFAULT_LOCALE') or define('DEFAULT_LOCALE', 'en');
 
+// order products list
+defined('ORDER_BY_NEWEST') or define('ORDER_BY_NEWEST', 1);
+defined('ORDER_BY_TOP_SELLING') or define('ORDER_BY_TOP_SELLING', 2);
+defined('ORDER_BY_POPULAR') or define('ORDER_BY_POPULAR', 3);
+defined('ORDER_BY_LOW_TO_HEIGHT') or define('ORDER_BY_LOW_TO_HEIGHT', 4);
+defined('ORDER_BY_HEIGHT_TO_LOW') or define('ORDER_BY_HEIGHT_TO_LOW', 5);

@@ -31,7 +31,7 @@
         <UiPageTitle title="POPULAR_PRODUCTS" />
         <div class="row">
             <div v-for="(product, i) in popularProductsRef" :key="i" class="col-xl-3 col-sm-6">
-                <ProductCardHorizontal :product="product" />
+                <ProductCardHorizontal :product="product" :key="product.slug_name" />
             </div>
         </div>
         <!-- Popular products -->
@@ -41,7 +41,7 @@
                 <UiPageTitle title="TOP_SELLING" />
                 <div class="row">
                     <div v-for="(product, i) in topSellingProductsRef" :key="i" class="col-lg-12">
-                        <ProductCardVertical :product="product" />
+                        <ProductCardVertical :product="product" :key="product.slug_name" />
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <UiPageTitle title="TRENDING_PRODUCTS" />
                 <div class="row">
                     <div v-for="(product, i) in trendingProductsRef" :key="i" class="col-lg-12">
-                        <ProductCardVertical :product="product" />
+                        <ProductCardVertical :product="product" :key="product.slug_name" />
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <UiPageTitle title="RECENTLY_ADDED" />
                 <div class="row">
                     <div v-for="(product, i) in recentlyProductsRef" :key="i" class="col-lg-12">
-                        <ProductCardVertical :product="product" />
+                        <ProductCardVertical :product="product" :key="product.slug_name" />
                     </div>
                 </div>
             </div>

@@ -29,5 +29,11 @@
     "POPULAR_PRODUCTS": "popular products",
     "TOP_SELLING": "top selling",
     "RECENTLY_ADDED": "recently added",
-    "TRENDING_PRODUCTS": "trending products"
+    "TRENDING_PRODUCTS": "trending products",
+    "PRODUCTS": "products",
+    "NEWEST": "newest",
+    "POPULAR": "popular",
+    "LOW_TO_HEIGHT": "low to height",
+    "HEIGHT_TO_LOW": "height to low",
+    "ORDER_BY": "Order by"
 }

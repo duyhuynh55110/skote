@@ -18,11 +18,12 @@ final class GetProductsQuery
     {
         $page = $args['page'] ?? 1;
         $perPage = $args['first'];
+        $orderBy = $args['order_by'] ?? ORDER_BY_NEWEST;
+        $columns = ['slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price'];
         $filter = [
             'search' => $args['search'] ?? null,
         ];
-        $columns = ['slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price'];
 
-        return $this->productRepo->getProducts($page, $perPage, $columns, $filter);
+        return $this->productRepo->getProducts($page, $perPage, $orderBy, $columns, $filter);
     }
 }

@@ -5,12 +5,13 @@
  * https://apollo.nuxtjs.org/getting-started/composables#useasyncquery
  */
 
-import { map, from, of } from 'rxjs'
+import { map, from, of, catchError } from 'rxjs'
 import { DEFAULT_PER_PAGE } from '@/enum/constants'
+import type { Paginator, Product } from '@/types';
 
 const GET_PRODUCTS = gql`
-    query ($perPage: Int!, $page: Int!) {
-        getProducts(first: $perPage, page: $page) {
+    query ($perPage: Int!, $page: Int!, $orderBy: Int!) {
+        getProducts(first: $perPage, page: $page, order_by: $orderBy) {
             data {
                 slug_name,
                 name,
@@ -26,15 +27,26 @@ const GET_PRODUCTS = gql`
     }
 `;
 
+interface QueryProducts {
+    getProducts: Paginator<Product>
+}
+
 // get products list
-export const getProducts = async (page: number, perPage: number = DEFAULT_PER_PAGE) => {
+export const getProducts = async (page: number, orderBy: number, perPage: number = DEFAULT_PER_PAGE) => {
     // fetching data for SSR
     return from(of(
-        await useAsyncQuery(GET_PRODUCTS, {
+        await useAsyncQuery<QueryProducts>(GET_PRODUCTS, {
             page,
-            perPage
+            perPage,
+            orderBy
         })
-    )).pipe(
-        map(({ data }) => data)
+    ))
+    .pipe(
+        map(res => res),
+        catchError(
+            e => {
+                throw 'error in source. Details: ' + e;
+            } 
+        )
     );
 }

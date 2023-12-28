@@ -4,7 +4,7 @@
 export default defineNuxtPlugin((nuxtApp) => {
     // enables v-mask in templates
     nuxtApp.vueApp.directive("mask", {
-        mounted: (el, binding) => {
+        mounted: (el: HTMLElement, binding) => {
     
         let mask = binding.value
         let first = mask.indexOf("_")
@@ -88,6 +88,62 @@ export default defineNuxtPlugin((nuxtApp) => {
             var start = el.selectionStart;
             maskIt(event, start);
         });
+        },
+    });
+
+    // enable v-lazyload in template
+    nuxtApp.vueApp.directive("lazy-load", {
+        mounted: (el: HTMLElement) => {
+            // Process onload & onerror image
+            const loadImage = () => {
+                const imageElement = el;
+
+                // Only process lazy loading if was image
+                if(imageElement.nodeName !== 'IMG') return;
+
+                console.log(imageElement);
+                // if element was image
+                if (imageElement) {
+                    imageElement.addEventListener('load', () => {
+                        setTimeout(() => el.classList.add('loaded'), 100);
+                    });
+                
+                    // Display error image on fail
+                    imageElement.addEventListener('error', () => {
+                        imageElement.src = '_nuxt/assets/images/image-not-found.png';
+                        setTimeout(() => el.classList.add('error'), 100);
+                    });
+
+                    // show image src
+                    imageElement.src = imageElement.dataset.url;
+                }
+            }
+          
+            const handleIntersect = (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        loadImage();
+                        observer.unobserve(el);
+                    }
+                });
+            }
+          
+            const createObserver = () => {
+                const options = {
+                    root: null,
+                    threshold: '0',
+                };
+
+                const observer = new IntersectionObserver(handleIntersect, options);
+                observer.observe(el);
+            }
+            
+            // Intersection Observe API does not support all browsers, it covers about 73%; If browser not support will replace by loadImage function
+            if (window['IntersectionObserver']) {
+                createObserver();
+            } else {
+                loadImage();
+            }
         },
     });
 });
