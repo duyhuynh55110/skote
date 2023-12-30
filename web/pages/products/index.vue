@@ -5,73 +5,113 @@
       <div class="filter">
         <div class="btn-group">
           <button class="btn btn-info dropdown-toggle btn-sm text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ $t('ORDER_BY') }}: <span class="text-capitalize">{{ $t(ORDER_PRODUCTS[productsRef.orderBy]) }}  <i class="mdi mdi-chevron-down"></i></span>
+              {{ $t('ORDER_BY') }}: <span class="text-capitalize">{{ $t(ORDER_PRODUCTS[currentOrderBy]) }}  <i class="mdi mdi-chevron-down"></i></span>
           </button>
           <div class="dropdown-menu" style="">
-              <span v-for="(item, index) in ORDER_PRODUCTS" :key="index" class="dropdown-item text-capitalize" @click="handleChangeSelectOrder(index)"> {{ $t(item) }} </span>
+              <span v-for="(item, index) in ORDER_PRODUCTS" :key="index" :class="['dropdown-item text-capitalize', { 'active': index === currentOrderBy }]" @click="handleChangeSelectOrder(index as string)"> {{ $t(item) }} </span>
           </div>
         </div>
         <!-- Order by -->
       </div>
     </div>
+    
     <div class="row">
-      <div v-for="(product, i) in productsRef.paginator.data" :key="i" class="col-xl-3 col-sm-6">
-        <ProductCardHorizontal :product="product" :key="product.slug_name" />
-      </div>
-      <div v-if="productsRef.loading" class="list-loading"></div>
+      <template v-if="!isFetching">
+        <div v-for="(product, i) in paginator.data" :key="i" class="col-xl-3 col-sm-6">
+          <ProductCardHorizontal :product="product" :key="product.slug_name" />
+        </div>
+      </template>
+      <template v-else>
+        <div v-for="i in DEFAULT_PER_PAGE" :key="i" class="col-xl-3 col-sm-6">
+          <ProductSkeletonCardHorizontal />
+        </div>
+      </template>
     </div>
+    <!-- Products list -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <UiPagination v-if="paginator.paginatorInfo" :lastPage="paginator.paginatorInfo?.last_page" :currentPage="currentPage" @page-change="handlePageChange" />
+      </div>
+    </div>
+    <!-- Pagination -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch } from "vue";
+import { ref, watch } from "vue";
 import { getProducts } from "@/services";
 import type { Product, Paginator } from "@/types";
-import { ORDER_PRODUCTS, ORDER_BY_NEWEST } from "@/enum/constants";
+import { ORDER_PRODUCTS, ORDER_BY_NEWEST, DEFAULT_PER_PAGE } from "@/enum/constants";
 
-// products state
-const productsRef = reactive<{
-  loading: boolean,
-  orderBy: number,
-  paginator: Paginator<Product>
-}>({
-  loading: false,
-  orderBy: ORDER_BY_NEWEST,
-  paginator: {
-    data: [],
-    paginatorInfo: {}
-  }
+// fetching list status
+const isFetching = ref(false);
+
+// list & paginator
+const paginator = ref<Paginator<Product>>({
+  data: [],
+  paginatorInfo: undefined
 });
+
+const route = useRoute()
+
+// list current page
+const requestPage = route.query?.page as string;
+const currentPage = ref<number>(requestPage ? parseInt(requestPage) :  1);
+
+// list ordering by
+const requestOrderBy= route.query?.order_by as string;
+const currentOrderBy = ref<string>(requestOrderBy ? requestOrderBy : ORDER_BY_NEWEST);
 
 // API fetch products list 
 const fetchProducts = async () => {
-  // show loading animation
-  productsRef.loading = true;
+  // show isFetching animation
+  isFetching.value = true;
 
-  const page = (productsRef.paginator?.paginatorInfo?.current_page ?? 0) + 1;
-
-  (await getProducts(page, productsRef.orderBy, 20)).subscribe({
-    next: ({ pending, data }) => {
+  (await getProducts(currentPage.value, currentOrderBy.value, DEFAULT_PER_PAGE)).subscribe({
+    next: ({ data }) => {
       const { getProducts } = data.value;
       
-      productsRef.paginator.data.push(...getProducts.data);
-      productsRef.paginator.paginatorInfo = getProducts.paginatorInfo;
+      paginator.value.data = getProducts.data;
+      paginator.value.paginatorInfo = getProducts.paginatorInfo;
     },
     complete: () => {
-      productsRef.loading = false;
+      isFetching.value = false;
     }
   })
 }
 
 // event when change order selection value
-const handleChangeSelectOrder = (orderBy: number|string) => {
-  productsRef.orderBy = parseInt(orderBy as string);
+const handleChangeSelectOrder = (orderBy: string) => {
+  currentOrderBy.value = orderBy;
+}
+
+// [Emit] event on change current page by Pagination component
+const handlePageChange = (page: number) => {
+  currentPage.value = page;
 }
 
 // refetch products list when change order value
-watch(() => productsRef.orderBy, async () => {
-  productsRef.paginator = { data: [], paginatorInfo: {} };
+watch(() => currentOrderBy.value, async (newVal, oldVal) => {
+  currentPage.value = 1;
+
+  // save value to URL
+  setRouteQuery({ order_by: newVal, page: 1 })
+
+  // reset list
+  paginator.value.data = [];
   
+  await fetchProducts();
+})
+
+// watcher on change currentPage -> update to query on URL
+watch(() => currentPage.value, async (newVal, oldVal) => {
+  // save value to URL
+  setRouteQuery({ page: newVal })
+
+  // reset list
+  paginator.value.data = [];
+
   await fetchProducts();
 })
 

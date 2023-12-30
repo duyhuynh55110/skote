@@ -24,13 +24,13 @@ class ProductRepository extends Repository
      * @param int $limit
      * @param array $
      * @param array $filter
-     * @param int $orderBy
+     * @param string $orderBy
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getProducts(
         int $page,
         int $perPage,
-        int $orderBy,
+        string $orderBy,
         array $columns = ['*'],
         array $filter = []
     ) {
@@ -67,10 +67,10 @@ class ProductRepository extends Repository
      * Order products list by value
      *
      * @param $query
-     * @param int $orderBy
+     * @param string $orderBy
      * @return void
      */
-    private function orderProductsListBy(&$query, int $orderBy) {
+    private function orderProductsListBy(&$query, string $orderBy) {
         // order by newest
         $query->when(in_array($orderBy, [ORDER_BY_TOP_SELLING, ORDER_BY_POPULAR, ORDER_BY_NEWEST]), fn($q) => $q->orderByDesc('id'));
 

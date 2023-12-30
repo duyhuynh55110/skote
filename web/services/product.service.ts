@@ -10,7 +10,7 @@ import { DEFAULT_PER_PAGE } from '@/enum/constants'
 import type { Paginator, Product } from '@/types';
 
 const GET_PRODUCTS = gql`
-    query ($perPage: Int!, $page: Int!, $orderBy: Int!) {
+    query ($perPage: Int!, $page: Int!, $orderBy: String!) {
         getProducts(first: $perPage, page: $page, order_by: $orderBy) {
             data {
                 slug_name,
@@ -22,6 +22,7 @@ const GET_PRODUCTS = gql`
                 per_page
                 current_page
                 total
+                last_page
             }
         }
     }
@@ -32,7 +33,7 @@ interface QueryProducts {
 }
 
 // get products list
-export const getProducts = async (page: number, orderBy: number, perPage: number = DEFAULT_PER_PAGE) => {
+export const getProducts = async (page: number, orderBy: string, perPage: number = DEFAULT_PER_PAGE) => {
     // fetching data for SSR
     return from(of(
         await useAsyncQuery<QueryProducts>(GET_PRODUCTS, {

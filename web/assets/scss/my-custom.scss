@@ -1,3 +1,4 @@
+// === Loading animation 
 .btn--loading .btn__text {
   visibility: hidden;
   opacity: 0;
@@ -30,14 +31,28 @@
   }
 }
 
-.list-loading {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// === Skeleton loading
+.skeleton {
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 30%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
 
-  &::after {
-    content: url('@/assets/images/loading.svg');
-    width: 5rem;
+h1, h2, h3, h4, h5, h6 {
+  &.skeleton {
+    height: 1.2rem;
+  }
+}
+
+p {
+  &.skeleton {
+    height: 1.5rem;
+  }
+}
+
+@keyframes shine {
+  to {
+      background-position-x: -200%;
   }
 }

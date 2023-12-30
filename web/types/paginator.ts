@@ -1,12 +1,12 @@
-interface PaginatorInfo {
+export interface PaginatorInfo {
     // Index of the current page.
-    current_page?: number
+    current_page: number
 
     // Number of items per page.
-    per_page?: number
+    per_page: number
 
     // Number of total available items.
-    total?: number
+    total: number
 
     // Number of items in the current page.
     count?: number
@@ -21,10 +21,10 @@ interface PaginatorInfo {
     last_item?: number
 
     // Index of the last available page.
-    last_page?: number
+    last_page: number
 }
 
 export interface Paginator<T> {
     data: T[]
-    paginatorInfo: PaginatorInfo
+    paginatorInfo?: PaginatorInfo
 }
