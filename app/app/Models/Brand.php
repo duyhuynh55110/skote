@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\AdminTimestamp;
+use App\Models\Traits\DisplayNameByLocale;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Brand extends Model
 {
-    use HasFactory, SoftDeletes, AdminTimestamp;
+    use HasFactory, SoftDeletes, AdminTimestamp, DisplayNameByLocale;
 
     /**
      * The attributes that are mass assignable.
@@ -23,20 +24,6 @@ class Brand extends Model
     ];
 
     /**
-     * Get & set brands.slug_name
-     *
-     * @return Attribute
-     */
-    public function slugName(): Attribute
-    {
-        return Attribute::make(
-            set: function (string $val) {
-                return slugifyModel($val, $this);
-            }
-        );
-    }
-
-    /**
      * Get full path for brands.logo_file_name
      *
      * @return Attribute
@@ -45,20 +32,6 @@ class Brand extends Model
     {
         return Attribute::make(
             get: fn() => getFullPathToImage($this, 'logo_file_name')
-        );
-    }
-
-    /**
-     * Get valid name by header locale
-     *
-     * @return Attribute
-     */
-    public function name(): Attribute
-    {
-        return Attribute::make(
-            get: function () {
-                return displayNameByLocale($this);
-            }
         );
     }
 }
