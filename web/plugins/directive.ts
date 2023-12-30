@@ -109,7 +109,7 @@ export default defineNuxtPlugin((nuxtApp) => {
                 
                     // Display error image on fail
                     imageElement.addEventListener('error', () => {
-                        imageElement.src = '_nuxt/assets/images/image-not-found.png';
+                        imageElement.src = '_nuxt/assets/images/not-found.png';
                         setTimeout(() => el.classList.add('error'), 100);
                     });
 

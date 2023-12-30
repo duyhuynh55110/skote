@@ -1,5 +1,5 @@
 export const CLOSE_TOAST_TIMEOUT = 5000
-export const DEFAULT_PER_PAGE = 8
+export const DEFAULT_PER_PAGE = 24
 
 // order products list
 export const ORDER_BY_NEWEST = 'newest';

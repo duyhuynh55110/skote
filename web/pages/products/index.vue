@@ -16,10 +16,16 @@
     </div>
     
     <div class="row">
-      <div v-for="(product, i) in paginator.data" :key="i" class="col-xl-3 col-sm-6">
-        <ProductCardHorizontal :product="product" :key="product.slug_name" />
-      </div>
-      <div v-if="loading" class="list-loading"></div>
+      <template v-if="!isFetching">
+        <div v-for="(product, i) in paginator.data" :key="i" class="col-xl-3 col-sm-6">
+          <ProductCardHorizontal :product="product" :key="product.slug_name" />
+        </div>
+      </template>
+      <template v-else>
+        <div v-for="i in DEFAULT_PER_PAGE" :key="i" class="col-xl-3 col-sm-6">
+          <ProductSkeletonCardHorizontal />
+        </div>
+      </template>
     </div>
     <!-- Products list -->
 
@@ -36,10 +42,12 @@
 import { ref, watch } from "vue";
 import { getProducts } from "@/services";
 import type { Product, Paginator } from "@/types";
-import { ORDER_PRODUCTS, ORDER_BY_NEWEST } from "@/enum/constants";
+import { ORDER_PRODUCTS, ORDER_BY_NEWEST, DEFAULT_PER_PAGE } from "@/enum/constants";
 
-// products state
-const loading = ref(false);
+// fetching list status
+const isFetching = ref(false);
+
+// list & paginator
 const paginator = ref<Paginator<Product>>({
   data: [],
   paginatorInfo: undefined
@@ -57,10 +65,10 @@ const currentOrderBy = ref<string>(requestOrderBy ? requestOrderBy : ORDER_BY_NE
 
 // API fetch products list 
 const fetchProducts = async () => {
-  // show loading animation
-  loading.value = true;
+  // show isFetching animation
+  isFetching.value = true;
 
-  (await getProducts(currentPage.value, currentOrderBy.value)).subscribe({
+  (await getProducts(currentPage.value, currentOrderBy.value, DEFAULT_PER_PAGE)).subscribe({
     next: ({ data }) => {
       const { getProducts } = data.value;
       
@@ -68,7 +76,7 @@ const fetchProducts = async () => {
       paginator.value.paginatorInfo = getProducts.paginatorInfo;
     },
     complete: () => {
-      loading.value = false;
+      isFetching.value = false;
     }
   })
 }
