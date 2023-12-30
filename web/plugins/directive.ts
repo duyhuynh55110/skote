@@ -101,7 +101,6 @@ export default defineNuxtPlugin((nuxtApp) => {
                 // Only process lazy loading if was image
                 if(imageElement.nodeName !== 'IMG') return;
 
-                console.log(imageElement);
                 // if element was image
                 if (imageElement) {
                     imageElement.addEventListener('load', () => {
