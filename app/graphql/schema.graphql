@@ -12,6 +12,9 @@ type Query {
 
     "Get list categories with paginate"
     getCategories: [Category!]! @field(resolver: "App\\GraphQL\\Queries\\Category\\GetCategoriesQuery")
+
+    "Search multiples brands/products in system"
+    getSearchMultiples(search: String! @search): [SearchMultipleItem!]! @paginate(resolver: "App\\GraphQL\\Queries\\GetSearchMultipleItems")
 }
 
 # Must authenticate by firebase service
@@ -20,4 +23,5 @@ extend type Query @guard(with: ["firebase-jwt"]) {
     getProfile: EndUser! @field(resolver: "EndUser\\GetProfile")
 }
 
+#import union/*.graphql
 #import modules/*.graphql
