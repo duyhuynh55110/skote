@@ -36,3 +36,10 @@ defined('ORDER_BY_TOP_SELLING') or define('ORDER_BY_TOP_SELLING', 'top_selling')
 defined('ORDER_BY_POPULAR') or define('ORDER_BY_POPULAR', 'popular');
 defined('ORDER_BY_LOW_TO_HEIGHT') or define('ORDER_BY_LOW_TO_HEIGHT', 'low_to_height');
 defined('ORDER_BY_HEIGHT_TO_LOW') or define('ORDER_BY_HEIGHT_TO_LOW', 'height_to_low');
+
+// Default limit union records
+defined('DEFAULT_LIMIT_UNION_TABLE_RECORDS') or define('DEFAULT_LIMIT_UNION_TABLE_RECORDS', 20);
+
+// Types in union table
+defined('UNION_TABLE_TYPE_PRODUCT') or define('UNION_TABLE_TYPE_PRODUCT', 'product');
+defined('UNION_TABLE_TYPE_BRAND') or define('UNION_TABLE_TYPE_BRAND', 'brand');

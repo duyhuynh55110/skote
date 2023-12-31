@@ -4,6 +4,7 @@ namespace App\Modules\Api\Repositories;
 
 use App\Models\Product;
 use Base\Repositories\Eloquent\Repository;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository extends Repository
 {
@@ -79,5 +80,23 @@ class ProductRepository extends Repository
 
         // order by price; height to low
         $query->when($orderBy == ORDER_BY_HEIGHT_TO_LOW, fn($q) => $q->orderByDesc('item_price'));
+    }
+
+    /**
+     * Prepare products table for union
+     *
+     * @param string $searchText
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function unionProducts(string $searchText): \Illuminate\Database\Eloquent\Builder {
+        return  $this->model
+        ->select([
+            'slug_name',
+            'name_en',
+            'name_vi',
+            'image_file_name',
+            DB::raw('"' . UNION_TABLE_TYPE_PRODUCT . '" as row_type'),
+        ])
+        ->whereFullText(['name_en', 'name_vi'], $searchText);
     }
 }

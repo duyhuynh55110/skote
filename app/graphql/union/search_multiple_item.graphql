@@ -1,0 +1,14 @@
+# this type will work with \\App\\Models\\SearchMultipleItem
+type SearchMultipleItem {
+    "Unique slug_name"
+    slug_name: String!
+
+    "display name by locale"
+    name: String!
+
+    "Link to image"
+    full_path_image: String!
+
+    "Type of this row"
+    row_type: String!
+}
