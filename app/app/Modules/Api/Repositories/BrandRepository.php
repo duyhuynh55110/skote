@@ -37,12 +37,13 @@ class BrandRepository extends Repository {
             'name_en',
             'name_vi',
             'logo_file_name',
+            DB::raw('NULL as item_price'),
             DB::raw('"' . UNION_TABLE_TYPE_BRAND . '" as row_type'),
         ])
         ->whereFullText(['name_en', 'name_vi'], $searchText);
 
         // Paginate union table
-        $paginate = $unionBrands->union($unionProductQuery)->paginate($perPage, [], 'page', $page);
+        $paginate = $unionBrands->union($unionProductQuery)->orderByRaw('RAND()')->paginate($perPage, [], 'page', $page);
 
         // Modify the data in the collection
         $records = $paginate->items();
@@ -52,6 +53,7 @@ class BrandRepository extends Repository {
                 'name' => $item->name,
                 'full_path_image' => $item instanceof \App\Models\Product ? $item->full_path_image : $item->full_path_logo,
                 'row_type' => $item->row_type,
+                'item_price' => $item->item_price, // products.item_price || null
             ];
         });
 

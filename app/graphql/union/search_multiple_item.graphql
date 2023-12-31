@@ -9,6 +9,9 @@ type SearchMultipleItem {
     "Link to image"
     full_path_image: String!
 
+    "Product's price"
+    item_price: Float
+
     "Type of this row"
     row_type: String!
 }

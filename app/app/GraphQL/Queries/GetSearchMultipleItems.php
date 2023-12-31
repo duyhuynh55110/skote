@@ -18,7 +18,7 @@ final class GetSearchMultipleItems
     public function __invoke($_, array $args)
     {
         $page = $args['page'] ?? 1;
-        $perPage = $args['first'] ?? DEFAULT_LIMIT_UNION_TABLE_RECORDS;
+        $perPage = $args['first'];
         $searchText = $args['search'];
 
         $unionProductQuery = $this->productRepo->unionProducts($searchText);

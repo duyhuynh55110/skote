@@ -95,6 +95,7 @@ class ProductRepository extends Repository
             'name_en',
             'name_vi',
             'image_file_name',
+            'item_price',
             DB::raw('"' . UNION_TABLE_TYPE_PRODUCT . '" as row_type'),
         ])
         ->whereFullText(['name_en', 'name_vi'], $searchText);
