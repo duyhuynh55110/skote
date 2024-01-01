@@ -8,9 +8,9 @@
             <div class="position-absolute w-100 bg-white">
                 <div v-if="!isFetching">
                     <div v-if="searchItemsData.length > 0" class="items-list">
-                        <RecordItem v-for="item in searchItemsData" :key="item.slug_name" :searchItem="item" />
+                        <RecordItem v-for="item in searchItemsData" :key="item.slug_name" :searchItem="item" @clear-list="clearSearchItemsData" />
                     </div>
-                    <div v-else>
+                    <div v-else-if="searchItemsData.length <= 0 && searchText">
                         <div class="p-4 text-center">
                             Not found
                         </div>
@@ -60,8 +60,10 @@
     // API fetch search multiple items list
     const fetchSearchMultipleItems = async () => {
         if(!searchText.value) {
+            searchItemsData.value = [];
             return;
         }
+
         // show isFetching animation
         isFetching.value = true;
 
@@ -80,11 +82,12 @@
 
     // event when keyup in search box
     const filterRecords = async (event: any) => {
-        // don't fetch API when key is 
-        // if(event.key === 'Backspace') {
-        //     return;
-        // }
-
         await fetchSearchMultipleItems();
+    }
+
+    // make empty list data
+    const clearSearchItemsData = () => {
+        searchText.value = '';
+        searchItemsData.value = [];
     }
 </script>
