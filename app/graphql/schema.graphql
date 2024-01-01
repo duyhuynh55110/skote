@@ -14,7 +14,7 @@ type Query {
     getCategories: [Category!]! @field(resolver: "App\\GraphQL\\Queries\\Category\\GetCategoriesQuery")
 
     "Search multiples brands/products in system"
-    getSearchMultiples(search: String! @search): [SearchMultipleItem!]! @paginate(resolver: "App\\GraphQL\\Queries\\GetSearchMultipleItems")
+    getSearchMultipleItems(search: String! @search): [SearchMultipleItem!]! @paginate(resolver: "App\\GraphQL\\Queries\\GetSearchMultipleItems")
 }
 
 # Must authenticate by firebase service
