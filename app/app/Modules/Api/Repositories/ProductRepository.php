@@ -61,7 +61,13 @@ class ProductRepository extends Repository
      * @return Product
      */
     public function getProductBySlugName(string $slugName, array $columns = ['*']) {
-        return $this->model->select($columns)->where('slug_name', $slugName)->first();
+        return $this->model->select($columns)
+        ->with([
+            'brand:id,slug_name,name_en,name_vi,logo_file_name',
+            'categories:id,slug_name,name_en,name_vi'
+        ])
+        ->where('slug_name', $slugName)
+        ->first();
     }
 
     /**

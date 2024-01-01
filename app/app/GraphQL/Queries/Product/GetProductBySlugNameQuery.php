@@ -18,7 +18,7 @@ final class GetProductBySlugNameQuery
     {
         $product = $this->productRepo->getProductBySlugName(
             $args['slug_name'],
-            ['slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description']
+            ['id', 'brand_id', 'slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description', 'summary_rating', 'count_rating']
         );
 
         return $product;
