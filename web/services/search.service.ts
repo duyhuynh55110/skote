@@ -21,25 +21,13 @@ interface QuerySearchItems {
 }
 
 // get search multiple items list
-export const getSearchMultipleItems = async (search: string, page: number, abortController: AbortController, perPage: number = DEFAULT_PER_PAGE) => {
-    abortController.abort("Before");
-    const signal = abortController.signal;
-
-    console.log(signal.aborted); // true
-    console.log(signal.reason); // Hello World
-
-    // $fetch('http://localhost:9000/graphql', {
-    //   signal
-    // });
-
+export const getSearchMultipleItems = async (search: string, page: number, perPage: number = DEFAULT_PER_PAGE) => {
     // fetching data for SSR
     return from(of(
         await useAsyncQuery<QuerySearchItems>(GET_SEARCH_MULTIPLE_ITEMS, {
             search,
             page,
             perPage,
-        }, 'network-only', {
-          signal
         })
     ))
     .pipe(

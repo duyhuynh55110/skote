@@ -67,8 +67,7 @@
         // show isFetching animation
         isFetching.value = true;
 
-        const abortController = new AbortController();
-        (await getSearchMultipleItems(searchText.value, 1, abortController, 5)).subscribe({
+        (await getSearchMultipleItems(searchText.value, 1, 5)).subscribe({
             next: ({ data }) => {
                 const { getSearchMultipleItems } = data.value;
                 
