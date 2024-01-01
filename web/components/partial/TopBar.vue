@@ -85,7 +85,7 @@
                 <img
                   src="@/assets/images/flags/spain.jpg"
                   alt="user-image"
-                  class="mr-1"
+                  class="me-1"
                   height="12"
                 />
                 <span class="align-middle">Spanish</span>
@@ -96,7 +96,7 @@
                 <img
                   src="@/assets/images/flags/germany.jpg"
                   alt="user-image"
-                  class="mr-1"
+                  class="me-1"
                   height="12"
                 />
                 <span class="align-middle">German</span>
@@ -107,7 +107,7 @@
                 <img
                   src="@/assets/images/flags/italy.jpg"
                   alt="user-image"
-                  class="mr-1"
+                  class="me-1"
                   height="12"
                 />
                 <span class="align-middle">Italian</span>
@@ -118,7 +118,7 @@
                 <img
                   src="@/assets/images/flags/russia.jpg"
                   alt="user-image"
-                  class="mr-1"
+                  class="me-1"
                   height="12"
                 />
                 <span class="align-middle">Russian</span>
@@ -170,7 +170,7 @@
                     @click.prevent.native="handleSignOut"
                   >
                     <i
-                      class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"
+                      class="bx bx-power-off font-size-16 align-middle me-1 text-danger"
                     ></i>
                     Logout
                   </button>
@@ -226,7 +226,7 @@ const handleSignOut = (): void => {
 // items in topnav
 const navbarLinks = [
   {
-    icon: '<i class="bx bx-home-circle mr-2"></i>',
+    icon: '<i class="bx bx-home-circle me-2"></i>',
     displayName: "DASHBOARD",
     url: "/",
   },
