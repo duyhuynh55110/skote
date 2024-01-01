@@ -19,6 +19,15 @@ type Product {
     "Full path image to display"
     full_path_image: String!
 
-    "Brand inform"
-    brand: Brand @belongsTo
+    "Summary rating for product"
+    summary_rating: Float
+
+    "Total rate for product"
+    count_rating: Int
+
+    "Brand inform (Relation); Don't need @belongsTo because with will call DML again and select all"
+    brand: Brand
+
+    "Product can have many categories (Relation); Don't need @belongsToMany because with will call DML again and select all"
+    categories: [Category!]
 }

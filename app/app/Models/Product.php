@@ -21,7 +21,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'brand_id', 'slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description',
+        'brand_id', 'slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price', 'description', 'summary_rating', 'count_rating',
         'created_by', 'updated_by', 'created_at', 'updated_at'
     ];
 
@@ -47,7 +47,7 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id')
             ->withTimestamps()
-            ->withPivot(['deleted_at'])
+            ->withPivot(['product_id', 'category_id', 'deleted_at'])
             ->using(CategoryProduct::class);
     }
 

@@ -23,6 +23,8 @@ erDiagram
         STRING image_file_name "UQ NN"
         DECIMAL item_price "NN"
         STRING description
+        DECIMAL summary_rating "NN"
+        INT count_rating "NN"
     }
 
     CATEGORIES {
