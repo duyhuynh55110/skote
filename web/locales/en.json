@@ -35,5 +35,8 @@
     "POPULAR": "popular",
     "LOW_TO_HEIGHT": "low to height",
     "HEIGHT_TO_LOW": "height to low",
-    "ORDER_BY": "Order by"
+    "ORDER_BY": "Order by",
+    "SPECIFICATIONS": "specifications",
+    "BRAND": "brand",
+    "CATEGORY": "category"
 }

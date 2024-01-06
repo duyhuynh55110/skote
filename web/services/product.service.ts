@@ -28,6 +28,28 @@ const GET_PRODUCTS = gql`
     }
 `;
 
+const GET_PRODUCT_BY_SLUG_NAME = gql`
+    query ($slugName: String!) {
+        getProductBySlugName(slug_name: $slugName) {
+            slug_name
+            name
+            item_price
+            full_path_image
+            summary_rating
+            count_rating
+            description
+            brand {
+                slug_name
+                name
+            }
+            categories {
+                slug_name
+                name
+            }
+        }
+    }
+`;
+
 interface QueryProducts {
     getProducts: Paginator<Product>
 }
@@ -40,6 +62,27 @@ export const getProducts = async (page: number, orderBy: string, perPage: number
             page,
             perPage,
             orderBy
+        })
+    ))
+    .pipe(
+        map(res => res),
+        catchError(
+            e => {
+                throw 'error in source. Details: ' + e;
+            } 
+        )
+    );
+}
+
+interface QueryGetProductBySlugName {
+    getProductBySlugName: Product
+}
+
+// get product detail by slug_name
+export const getProductBySlugName = async (slugName: string) => {
+    return from(of(
+        await useAsyncQuery<QueryGetProductBySlugName>(GET_PRODUCT_BY_SLUG_NAME, {
+            slugName
         })
     ))
     .pipe(
