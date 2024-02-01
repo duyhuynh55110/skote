@@ -50,8 +50,26 @@ const GET_PRODUCT_BY_SLUG_NAME = gql`
     }
 `;
 
+const GET_PRODUCTS_BY_CATEGORY_SLUG_NAME = gql`
+    query($categorySlug: [String!]!) {
+        getProducts(category_slug: $categorySlug, first: 1, page: 1) {
+            data {
+                slug_name,
+                name,
+                full_path_image,
+                item_price,
+                summary_rating
+            }
+        }
+    }
+`;
+
 interface QueryProducts {
     getProducts: Paginator<Product>
+}
+
+interface QueryGetProductBySlugName {
+    getProductBySlugName: Product
 }
 
 // get products list
@@ -74,10 +92,6 @@ export const getProducts = async (page: number, orderBy: string, perPage: number
     );
 }
 
-interface QueryGetProductBySlugName {
-    getProductBySlugName: Product
-}
-
 // get product detail by slug_name
 export const getProductBySlugName = async (slugName: string) => {
     return from(of(
@@ -94,3 +108,21 @@ export const getProductBySlugName = async (slugName: string) => {
         )
     );
 }
+
+// get products list own to category
+export const getProductsByCategorySlug = async (slugName: string[]) => {
+    // fetching data for SSR
+    return from(of(
+        await useAsyncQuery<QueryProducts>(GET_PRODUCTS_BY_CATEGORY_SLUG_NAME, {
+            categorySlug: slugName,
+        })
+    ))
+    .pipe(
+        map(res => res),
+        catchError(
+            e => {
+                throw 'error in source. Details: ' + e;
+            } 
+        )
+    );
+} 

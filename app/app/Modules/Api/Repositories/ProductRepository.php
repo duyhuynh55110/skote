@@ -46,6 +46,16 @@ class ProductRepository extends Repository
             }
         );
 
+        // filter by categories list
+        $query->when(
+            isset($filter['category_slug']) && !empty($filter['category_slug']),
+            function ($q) use ($filter) {
+                $q->whereHas('categories', function ($q) use ($filter) {
+                    $q->whereIn('slug_name', $filter['category_slug']);
+                });
+            }
+        );
+
         // order by value
         $this->orderProductsListBy($query, $orderBy);
 

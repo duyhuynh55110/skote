@@ -22,6 +22,7 @@ final class GetProductsQuery
         $columns = ['slug_name', 'name_en', 'name_vi', 'image_file_name', 'item_price'];
         $filter = [
             'search' => $args['search'] ?? null,
+            'category_slug' => $args['category_slug'] ?? [],
         ];
 
         return $this->productRepo->getProducts($page, $perPage, $orderBy, $columns, $filter);

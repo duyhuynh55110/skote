@@ -3,14 +3,16 @@ type Query {
     "Find a brand by slug_name"
     brand(slug_name: String!): Brand @first
 
+    "Get products list with paginate \n Filter by: \n - Search string \n - Category's id"
+    getProducts(search: String @search, order_by: String, category_slug: [String!]): [Product!]! @paginate(resolver: "App\\GraphQL\\Queries\\Product\\GetProductsQuery")
+
     "Find a product by slug_name"
-    getProducts(search: String @search, order_by: String): [Product!]! @paginate(resolver: "App\\GraphQL\\Queries\\Product\\GetProductsQuery")
     getProductBySlugName(slug_name: String!): Product @field(resolver: "App\\GraphQL\\Queries\\Product\\GetProductBySlugNameQuery")
 
     "Find a category by slug_name"
     category(slug_name: String!): Category @first
 
-    "Get list categories with paginate"
+    "Get categories list with paginate"
     getCategories: [Category!]! @field(resolver: "App\\GraphQL\\Queries\\Category\\GetCategoriesQuery")
 
     "Search multiples brands/products in system"

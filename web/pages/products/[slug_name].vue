@@ -137,17 +137,52 @@
       <!-- end card -->
     </div>
     <!-- end row -->
+
+    <div class="row mt-3">
+      <div class="col-lg-12">
+          <div>
+              <h5 class="mb-3 text-capitalize"> {{ $t('RELATE_PRODUCTS') }}:</h5>
+
+              <div class="row">
+                  <div v-for="product in relatedProducts" :key="product?.slug_name" class="col-xl-4 col-sm-6">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="row align-items-center">
+                                  <div class="col-md-4">
+                                      <img :src="product.full_path_image" alt="" class="img-fluid mx-auto d-block">
+                                  </div>
+                                  <div class="col-md-8">
+                                      <div class="text-center text-md-left pt-3 pt-md-0">
+                                          <h5 class="mb-3 text-truncate"><a href="#" class="text-dark"> {{ product.name }} </a></h5>
+                                          <ProductStarRating :summaryRating="product.summary_rating" class="me-1" />
+                                          <h5 class="my-0"><b>$135</b></h5>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- end row -->
+          </div>
+      </div>
+    </div>
+    <!-- Relation products -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import { getProductBySlugName } from "@/services"
+import { getProductBySlugName, getProductsByCategorySlug } from "@/services"
 import type { Product } from "@/types"
 
 const route = useRoute()
+
 const isFetching = ref(false)
 const product = ref<Product|null>(null)
+
+const isFetchingRelatedProducts = ref(false)
 const categories = computed(() => product.value?.categories ?? [])
+const relatedProducts = ref<Product[]>([])
 
 // API fetch product detail by slug_name
 const fetchProduct = async () => {
@@ -169,6 +204,29 @@ const fetchProduct = async () => {
   })
 }
 
+// API fetch related products with this product
+const fetchRelatedProducts = async () => {
+  isFetchingRelatedProducts.value = true;
+
+  const categorySlugNameList = product.value!.categories?.map(category => category.slug_name) as string[]|undefined;
+
+  if(categorySlugNameList === undefined) return;
+
+  // API fetch 
+  (await getProductsByCategorySlug(categorySlugNameList)).subscribe({
+    next: ({ data }) => {
+      console.log(data);
+      const { getProducts } = data.value;
+
+      relatedProducts.value = getProducts.data;
+    },
+    complete: () => {
+      isFetchingRelatedProducts.value = false;
+    }
+  })
+}
+
 // created hook
 await fetchProduct()
+await fetchRelatedProducts()
 </script>
